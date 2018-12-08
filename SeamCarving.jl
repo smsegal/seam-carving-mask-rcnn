@@ -1,4 +1,4 @@
-using Images, ImageView, LinearAlgebra;
+using Images, ImageFiltering, ImageView, LinearAlgebra;
 
 module SeamCarving
 
@@ -38,4 +38,14 @@ function addSeam(img, seam)
     left = [map(s -> img[:,s]) img[:,seam]]
     right = map(s -> img[:, s:end], seam)
     return [left right]
+end
+
+function energy(img)
+    square = x -> x.^2
+    gmag(gs) = √(sum ∘ square)([gs...])
+
+    f = imgradients(img)
+    return gmag((gx,gy))
+end
+
 end
