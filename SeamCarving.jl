@@ -1,6 +1,6 @@
-using Images, ImageFiltering, ImageView, LinearAlgebra;
-
 module SeamCarving
+
+using Images, ImageView, LinearAlgebra;
 
 function resize(img, newSize::NTuple{2,Int})
     carved = img
@@ -42,10 +42,15 @@ end
 
 function energy(img)
     square = x -> x.^2
-    gmag(gs) = √(sum ∘ square)([gs...])
-
-    f = imgradients(img)
-    return gmag((gx,gy))
+    gx, gy = imgradients(img, Kernel.ando3)
+    return hypot.(gx, gy)
 end
+
+function score(energy)
+    M = zero(energy) #M is our scoring matrix
+    M[1,:] = energy[1,:] #Scoring matrix is seeded with the energy matrix
+    M[2:end,:] = reduce(energy) do scoreUp, curRow
+        row = curRow .+ min.(scoreUp[])
+    end
 
 end
