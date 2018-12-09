@@ -1,6 +1,6 @@
-using SeamCarving, Test
+using SeamCarving, Test, FileIO
 
-function tests()
-    img = imread("../ryerson.jpg")
-    @testset "Some tests" begin
-        @test size(resize(img, (200, 200))) == (200,200)
+@testset "Some tests" begin
+    img = load("../ryerson.jpg")
+    @test size(SeamCarving.resize(img, (200, 200))) == (200,200)
+end

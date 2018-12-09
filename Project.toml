@@ -1,3 +1,8 @@
+name = "SeamCarving"
+uuid = "e3292bca-fb21-11e8-377c-433ab2ea0a1b"
+authors = ["Shane Segal <shane.segal95@gmail.com>"]
+version = "0.1.0"
+
 [deps]
 CoordinateTransformations = "150eb455-5306-5404-9cee-2592286d6298"
 FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
@@ -6,5 +11,7 @@ ImageMagick = "6218d12a-5da1-5696-b52f-db25d2ecc6d1"
 ImageView = "86fae568-95e7-573e-a6b2-d8a6b900c9ef"
 Images = "916415d5-f1e6-5110-898d-aaa5f9f070e0"
 Interact = "c601a237-2ae4-5e1e-952c-7a85b0c7eef1"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 QuartzImageIO = "dca85d43-d64c-5e67-8c65-017450d5d020"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 TestImages = "5e47fb64-e119-507b-a336-dd2b206d9990"

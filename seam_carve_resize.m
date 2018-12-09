@@ -78,12 +78,12 @@ function scoreMatrix = computeScoreMatrix(energyImage)
 		%% (d)
 		for y = 2 : E_height
 				rowAbove = M(y-1, :);
-			for x = 2:(E_width - 1)
-		% 		fprintf('X: %i, Y: %i\t\t%i\t%i\t%i\n', x, y, rowAbove(x-1), rowAbove(x), rowAbove(x+1));
-				M(y, x) = energyImage(y, x) + min(rowAbove(x-1 : x+1));
-			end
-			M(y, 1) = energyImage(y, 1) + min(rowAbove(1 : 2));	%left column
-			M(y, E_width) = energyImage(y, E_width) + min(rowAbove(E_width - 1 : E_width));	%right column
+        for x = 2:(E_width - 1)
+            % 		fprintf('X: %i, Y: %i\t\t%i\t%i\t%i\n', x, y, rowAbove(x-1), rowAbove(x), rowAbove(x+1));
+            M(y, x) = energyImage(y, x) + min(rowAbove(x-1 : x+1));
+        end
+        M(y, 1) = energyImage(y, 1) + min(rowAbove(1 : 2));	%left column
+        M(y, E_width) = energyImage(y, E_width) + min(rowAbove(E_width - 1 : E_width));	%right column
 		end
 
 		scoreMatrix = M;
