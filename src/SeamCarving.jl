@@ -2,7 +2,7 @@ using Images, ImageView, LinearAlgebra, FileIO
 
 function resize(img, newSize::NTuple{2,Int})
     carved = img
-    for diff in size(img) .- newSize
+    for diff in reverse(size(img) .- newSize)
         diffMag = abs(diff)
         if diff > 0 #shrink along dim
             println("shrink")
@@ -26,41 +26,40 @@ function seamCarve(changeImage, img, diff)
         seam = (generateSeam ∘ score ∘ padsides ∘ energy)(currentImage)
         currentImage = changeImage(currentImage, seam)
     end
+    return currentImage
 end
 
-function removeSeam(img, seam)
-    left = map((i,s) -> img[i, 1:s], enumerate(seam))
-    println(summary(left))
-    println(seam[1])
-    right = map(s -> img[:, s+1:end], seam)
-    return [left right]
+removeSeam(img, seam) = handleSeam(removeSeamPoint, img, seam)
+addSeam(img, seam) = handleSeam(addSeamPoint, img, seam)
+
+function handleSeam(adjustRow, img, seam)
+    (transpose ∘ mapreduce)(hcat, enumerate(seam)) do (i, s)
+        @views adjustRow(img[i,:], s)
+    end
 end
 
-function addSeam(img, seam)
-    left = [map(s -> img[:,s]) img[:,seam]]
-    right = map(s -> img[:, s:end], seam)
-    return [left right]
-end
+removeSeamPoint(row, s) = @views [row[1:s-1]; row[s+1:end]]
+addSeamPoint(row, s) = @views [row[1:s]; row[s]; row[s+1:end]]
 
-unpack((_,_,third)) = third
-energy(img) = (unpack ∘ imedge)(img, Kernel.ando3)
+getThird((_,_,third)) = third
+energy(img) = (getThird ∘ imedge)(img, Kernel.ando3)
 
 function score(energy)
     M = fill(Inf, size(energy)) #M is our scoring matrix
     M[1,:] = energy[1,:] #Scoring matrix is seeded with the first row of the energy matrix
-    xrange = collect(-1:1)
+    xrange = -1:1
     height, width = size(M)
     for y = 2:height, x = 2:(width - 1)
         M[y,x] = energy[y,x] + minimum(M[y-1, x .+ xrange])
     end
-    println(summary(M))
+    # println("score matrix: ", summary(M))
     return M
 end
 
 function generateSeam(score)
     height, _ = size(score)
     seam = zeros(height)
-    offsets = collect(-1:1)
+    offsets = -1:1
     _, seam[end] = findmin(score[end,:])
     for i = (height - 1):-1:1
         row = score[i,:]
