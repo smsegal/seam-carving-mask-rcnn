@@ -22,13 +22,16 @@ growDim(img,diff) = seamCarve(addSeam, img, diff)
 function seamCarve(changeImage, img, diff)
     currentImage = img
     for i ∈ 1:diff
-        seam = (generateSeam ∘ score ∘ energy)(currentImage)
+        println(string("Iteration ", i, "/", diff))
+        seam = (generateSeam ∘ score ∘ padsides ∘ energy)(currentImage)
         currentImage = changeImage(currentImage, seam)
     end
 end
 
 function removeSeam(img, seam)
-    left = map(s -> img[:,s], seam)
+    left = map((i,s) -> img[i, 1:s], enumerate(seam))
+    println(summary(left))
+    println(seam[1])
     right = map(s -> img[:, s+1:end], seam)
     return [left right]
 end
@@ -39,16 +42,18 @@ function addSeam(img, seam)
     return [left right]
 end
 
-energy(img) = (padsides ∘ (pack -> pack[3]) ∘ imedge)(img, Kernel.ando3)
+unpack((_,_,third)) = third
+energy(img) = (unpack ∘ imedge)(img, Kernel.ando3)
 
 function score(energy)
-    M = zero(energy) #M is our scoring matrix
+    M = fill(Inf, size(energy)) #M is our scoring matrix
     M[1,:] = energy[1,:] #Scoring matrix is seeded with the first row of the energy matrix
     xrange = collect(-1:1)
     height, width = size(M)
     for y = 2:height, x = 2:(width - 1)
         M[y,x] = energy[y,x] + minimum(M[y-1, x .+ xrange])
     end
+    println(summary(M))
     return M
 end
 
@@ -65,11 +70,11 @@ function generateSeam(score)
         seam[i] += seam[i + 1] - 2
     end
     seam = seam .- 1 #account for the padding
-    println(string("final seam: ", seam))
+    return Int.(seam)
 end
 
-padsides(array) = padsides(array, Inf)
-function padsides(array, val)
+padsides(array::AbstractArray) = padsides(array, Inf)
+function padsides(array::AbstractArray, val)
     padVect = fill(Inf, size(array,1))
     return [padVect array padVect]
 end
