@@ -16,38 +16,51 @@ function resize(img, newSize::NTuple{2,Int})
     return carved
 end
 
+function contentAmplification(img, factor)
+    larger = imresize(img, ratio=factor)
+    return resize(larger, size(img))
+end
+
 function growDim(img, diff)
     _, seams = shrinkDim(img, diff)
     currentImage = img
     for i ∈ 1:diff
-        grownImage = zeros(eltype(currentImage), size(currentImage) .+ (0,1))
         println(string("Growth Iteration ", i, "/", diff))
-        for (row, s) ∈ enumerate(seams[i])
-            grownImage[row,:] = [currentImage[row,1:s]; currentImage[row,s]; currentImage[row,s+1:end]]
-        end
+        grownImage = zeros(eltype(currentImage), size(currentImage) .+ (0,1))
+        addSeam!(grownImage, currentImage, seams[i])
         currentImage = grownImage
     end
     return currentImage
 end
 
+function seamFromImage(img)
+    (generateSeam ∘ score ∘ padsides ∘ energy)(img)
+end
+
 function shrinkDim(img, diff)
     currentImage = img
     seams = fill(Vector{Int}(undef, size(img,1)), diff)
-    seamFromImage = generateSeam ∘ score ∘ padsides ∘ energy
     for i ∈ 1:diff
         println(string("Iteration ", i, "/", diff))
         seams[i] = seamFromImage(currentImage)
         shrunkImage = zeros(eltype(currentImage), size(currentImage) .- (0,1))
-        for (row, s) ∈ enumerate(seams[i])
-            shrunkImage[row,:] = [currentImage[row,1:s-1]; currentImage[row,s+1:end]]
-        end
+        removeSeam!(shrunkImage, currentImage, seams[i])
         currentImage = shrunkImage
     end
     return currentImage, seams
 end
 
-removeSeamPoint(row, s) = @views [row[1:s-1]; row[s+1:end]]
-addSeamPoint(row, s) = @views [row[1:s]; mean(row[s .+ [-1:1;]]); row[s+1:end]]
+function removeSeam!(shrunkImage, prevImage, seam)
+    for (row, s) ∈ enumerate(seam)
+        shrunkImage[row,:] .= [prevImage[row,1:s-1]; prevImage[row,s+1:end]]
+    end
+end
+
+function addSeam!(grownImage, prevImage, seam)
+    for (row, s) ∈ enumerate(seam)
+        grownImage[row,:] .= [prevImage[row,1:s]; prevImage[row,s]; prevImage[row,s+1:end]]
+    end
+end
 
 getThird((_,_,third)) = third
 energy(img) = (getThird ∘ imedge)(img, Kernel.ando3)
