@@ -63,11 +63,19 @@ function addSeam!(grownImage, prevImage, seam)
 end
 
 getThird((_,_,third)) = third
-energy(img) = (getThird ∘ imedge)(img, Kernel.ando3)
+# energy(img) = (getThird ∘ imedge)(img, Kernel.ando3)
+function energy(img)
+    magnitude = (getThird ∘ imedge)(img, Kernel.ando3)
+    #= masked regions are to be element-wise multiplied by the magnitude image,
+    so they should be 1 .+ a one-hot encoded =#
+    maskedregions = masks(img)
+
+
+end
 
 function score(energy)
     M = fill(Inf, size(energy)) #M is our scoring matrix
-    M[1,:] = energy[1,:] #Scoring matrix is seeded with the first row of the energy matrix
+    M[1,:] .= energy[1,:] #Scoring matrix is seeded with the first row of the energy matrix
     xrange = -1:1
     height, width = size(M)
     for y = 2:height, x = 2:(width - 1)
