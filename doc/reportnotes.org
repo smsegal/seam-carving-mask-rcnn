@@ -1,0 +1,8 @@
+* Notes for Report
+Trying to solve the problem of adaptive image resizing preserving semantic
+content at its relative intensities. Previous attempts use seam carving for
+adaptive image resize, but do not have higher order feature understanding. To
+address this, we change the energy function by introducing a semantic
+segmentation masking layer (produced my MaskRCNN) that scales the energies of
+the gradients for pixels belonging to higher order features. This can include
+people, animals, or common objects. Results are hopefully good.
