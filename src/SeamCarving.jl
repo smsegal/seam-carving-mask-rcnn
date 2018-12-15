@@ -69,8 +69,11 @@ function energy(img)
     #= masked regions are to be element-wise multiplied by the magnitude image,
     so they should be 1 .+ a one-hot encoded =#
     maskedregions = masks(img)
+    return maskedregions .* magnitude
+end
 
-
+function masks(img)
+    return ones(img)
 end
 
 function score(energy)
