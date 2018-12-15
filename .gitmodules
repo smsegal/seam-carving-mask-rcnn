@@ -1,0 +1,3 @@
+[submodule "mask_rcnn"]
+	path = mask_rcnn
+	url = git@git.sr.ht:~smsegal/mask_rcnn
