@@ -1,4 +1,4 @@
-using Images, ImageView, LinearAlgebra, FileIO, Statistics, PyCall
+using Images, LinearAlgebra, FileIO, Statistics, PyCall
 
 function resize(img, newSize::NTuple{2,Int})
     carved = img
