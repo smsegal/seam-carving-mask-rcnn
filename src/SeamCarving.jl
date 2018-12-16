@@ -66,14 +66,17 @@ getThird((_,_,third)) = third
 # energy(img) = (getThird ∘ imedge)(img, Kernel.ando3)
 function energy(img)
     magnitude = (getThird ∘ imedge)(img, Kernel.ando3)
-    #= masked regions are to be element-wise multiplied by the magnitude image,
-    so they should be 1 .+ a one-hot encoded =#
+    #=
+    masked regions are to be element-wise multiplied by the magnitude image,
+    so they should be 1 .+ a one-hot encoded
+    =#
     maskedregions = masks(img)
     return maskedregions .* magnitude
 end
 
+# function stub
 function masks(img)
-    return ones(img)
+    return ones(size(img)...)
 end
 
 function score(energy)
@@ -96,7 +99,7 @@ function generateSeam(score)
         row = score[i,:]
         _, seam[i] = findmin(row[Int.(seam[i + 1] .+ offsets)])
 
-        #shift by two so that the min array is a [-1,0,1] offset from the seam coord below it
+        #shift by 2 + 1 so that the min array is a [-1,0,1] offset from the seam coord below it and padding is accounted for
         seam[i] += seam[i + 1] - 2
     end
     return seam .- 1 #account for the padding
