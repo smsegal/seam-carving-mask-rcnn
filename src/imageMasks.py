@@ -16,7 +16,6 @@ ROOT_DIR = os.path.abspath("../")
 sys.path.append(MRCNN_DIR)  # To find local version of the library
 from mrcnn import utils
 import mrcnn.model as modellib
-
 from mrcnn import visualize
 
 # Import COCO config
@@ -60,6 +59,7 @@ class MaskGenerator:
         self.model.load_weights(self.COCO_MODEL_PATH, by_name=True)
 
     def computeMasks(self, img):
+        print(img)
         results = self.model.detect([img], verbose=1)
         return results[0]["masks"]
         # base = np.ones(img.shape)
