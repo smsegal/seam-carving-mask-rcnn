@@ -62,3 +62,9 @@ class MaskGenerator:
     def computeMasks(self, img):
         results = self.model.detect([img], verbose=1)
         return results[0]["masks"]
+        # base = np.ones(img.shape)
+        # for i in range(masks.shape(3)):
+        #     mm = np.where(
+        #         masks[:,:,i] == 1,
+
+        #     )

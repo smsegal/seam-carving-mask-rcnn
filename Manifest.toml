@@ -125,9 +125,9 @@ uuid = "8bb1440f-4735-579b-a4ab-409b98df4dab"
 
 [[Distances]]
 deps = ["LinearAlgebra", "Printf", "Random", "Statistics", "Test"]
-git-tree-sha1 = "2f38605722542f1c0a32dd2856fb529d8c226c69"
+git-tree-sha1 = "0e37d8a95bafbeb9c800ef27ab6f443d29e17610"
 uuid = "b4f34e82-e78d-54a5-968a-f98e89d6e8f7"
-version = "0.7.3"
+version = "0.7.4"
 
 [[Distributed]]
 deps = ["LinearAlgebra", "Random", "Serialization", "Sockets"]
@@ -180,9 +180,9 @@ version = "0.16.4"
 
 [[GtkReactive]]
 deps = ["Cairo", "Colors", "Dates", "FixedPointNumbers", "Graphics", "Gtk", "IntervalSets", "Reactive", "Reexport", "RoundingIntegers", "Test"]
-git-tree-sha1 = "b906033713697f214b95b3e9bd51db398e794420"
+git-tree-sha1 = "6d5596de3fd5d6d2f012f6f36d3b226eac5e2b47"
 uuid = "27996c0f-39cd-5cc1-a27a-05f136f946b6"
-version = "0.5.2"
+version = "0.5.3"
 
 [[HTTPClient]]
 deps = ["Compat", "LibCURL"]
@@ -440,9 +440,9 @@ uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 
 [[ProgressMeter]]
 deps = ["Distributed", "Printf", "Random", "Test"]
-git-tree-sha1 = "37e7d3982c8d4610196829c01387dd561756aedc"
+git-tree-sha1 = "48058bc11607676e5bbc0b974af79106c6200787"
 uuid = "92933f4c-e287-5a05-a399-4b506db050ca"
-version = "0.8.0"
+version = "0.9.0"
 
 [[PyCall]]
 deps = ["Compat", "Conda", "MacroTools", "Statistics", "VersionParsing"]
@@ -478,9 +478,9 @@ version = "0.3.0"
 
 [[Reactive]]
 deps = ["DataStructures", "Distributed", "Test"]
-git-tree-sha1 = "2384e3bda9dcd16750ff605fdf817e18cfdd9bae"
+git-tree-sha1 = "5862d915387ebb954016f50a88e34f79a9e5fcd2"
 uuid = "a223df75-4e93-5b7c-acf9-bdd599c0f4de"
-version = "0.8.2"
+version = "0.8.3"
 
 [[Reexport]]
 deps = ["Pkg"]
