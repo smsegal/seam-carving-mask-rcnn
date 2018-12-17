@@ -93,7 +93,7 @@ function energy(img)
     return maskedregions .* magnitude
 end
 
-maskgen = imageMasks.MaskGenerator()
+# maskgen = imageMasks.MaskGenerator()
 # function stub
 function masks(img)
     pyimg = channelview(img)

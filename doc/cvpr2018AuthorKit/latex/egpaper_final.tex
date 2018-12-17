@@ -16,31 +16,20 @@
 
 \cvprfinalcopy % *** Uncomment this line for the final submission
 
-\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
 \def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
 
 % Pages are numbered in submission mode, and unnumbered in camera-ready
 %\ifcvprfinal\pagestyle{empty}\fi
-\setcounter{page}{4321}
+\setcounter{page}{1}
 \begin{document}
 
 %%%%%%%%% TITLE
-\title{\LaTeX\ Author Guidelines for CVPR Proceedings}
+\title{Content-Aware Image Resizing with Seam Carving and ResNets}
 
-\author{First Author\\
-Institution1\\
-Institution1 address\\
-{\tt\small firstauthor@i1.org}
-% For a paper whose authors are all at the same institution,
-% omit the following lines up until the closing ``}''.
-% Additional authors and addresses can be added with ``\and'',
-% just like the second author.
-% To save space, use either the email address or home page, not both
-\and
-Second Author\\
-Institution2\\
-First line of institution2 address\\
-{\tt\small secondauthor@i2.org}
+\author{Shane Segal\\
+  York University\\
+  Toronto ON, Canada\\
+  {\tt\small smsegal@eecs.yorku.ca}
 }
 
 \maketitle
@@ -48,23 +37,25 @@ First line of institution2 address\\
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-   The ABSTRACT is to be in fully-justified italicized text, at the top
-   of the left-hand column, below the author and affiliation
-   information. Use the word ``Abstract'' as the title, in 12-point
-   Times, boldface type, centered relative to the column, initially
-   capitalized. The abstract is to be in 10-point, single-spaced type.
-   Leave two blank lines after the Abstract, then begin the main text.
-   Look at previous CVPR abstracts to get a feel for style and length.
+  Image resizing that respects the semantic content of images is an improvement
+  on prior methods of Content Aware Image resizing that don't integrate
+  higher-level knowledge of the image into their resizing processes. We present
+  an algorithm that combines the capabilities of modern, state of the art deep
+  learning techniques with the classical Seam Carving algorithm
+  \cite{seamcarve}. By combining the ability of \cite{seamcarve} and the
+  advanced image segmentation techniques of Mask~{R-CNN} \cite{maskrcnnpaper},
+  semantically irrelevant information is removed from the image, while regions
+  featuring subjectively important content is retained. In addition, the image
+  enlarging capabilities of the original seam carving algorithm are enhanced by
+  avoiding distortions of higher level features.
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
 \section{Introduction}
 
-Please follow the steps outlined below when submitting your manuscript to
-the IEEE Computer Society Press.  This style guide now has several
-important modifications (for example, you are no longer warned against the
-use of sticky tape to attach your artwork to the paper), so all authors
-should read this new version.
+Image resizing has historically been done by cropping or scaling images, to
+shrink or enlarge them respectively. The introduction of the seam-carving
+operator by \cite{seamcarve}
 
 %-------------------------------------------------------------------------
 \subsection{Language}
@@ -91,7 +82,7 @@ altered from those laid down by this style guide.  Note that this
 The reason such papers will not be reviewed is that there is no provision for
 supervised revisions of manuscripts.  The reviewing process cannot determine
 the suitability of the paper for presentation in eight pages if it is
-reviewed in eleven.  
+reviewed in eleven.
 
 %-------------------------------------------------------------------------
 \subsection{The ruler}
