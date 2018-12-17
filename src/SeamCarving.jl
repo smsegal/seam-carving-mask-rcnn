@@ -1,10 +1,10 @@
 using Images, LinearAlgebra, FileIO, Statistics, PyCall
-ENV["PYTHON"] = "python"
-pushfirst!(PyVector(pyimport("sys")["path"]), "")
-@pyimport imageMasks
-@pyimport numpy as np
+# ENV["PYTHON"] = "python"
+# pushfirst!(PyVector(pyimport("sys")["path"]), "")
+# @pyimport imageMasks
+# @pyimport numpy as np
 
-function resize(img, newSize::NTuple{2,Int}; fancy=true)
+function resize(img, newSize::NTuple{2,Int}; fancy=false)
     carved = img
     if fancy
         shrinkDimLocal = (im, dm) -> shrinkDim(im, dm, energy)

@@ -4,11 +4,14 @@
 \usepackage{times}
 \usepackage{epsfig}
 \usepackage{graphicx}
+\usepackage{subfig}
 \usepackage{amsmath}
+\usepackage{bm}
 \usepackage{amssymb}
 
 % Include other packages here, before hyperref.
 
+\graphicspath{{../assets/}}
 % If you comment hyperref and then uncomment it, you should delete
 % egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
 % run, let it finish, and you should be clear).
@@ -47,7 +50,8 @@
   semantically irrelevant information is removed from the image, while regions
   featuring subjectively important content is retained. In addition, the image
   enlarging capabilities of the original seam carving algorithm are enhanced by
-  avoiding distortions of higher level features.
+  avoiding distortions of higher level features when they are present in the
+  image.
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
@@ -57,18 +61,132 @@ Image resizing has historically been done by cropping or scaling images, to
 shrink or enlarge them respectively. The introduction of the seam-carving
 operator by \cite{seamcarve} allowed for the easy resizing of images while
 preserving spots of the image according to some energy function. The original
-paper used the gradient magnitude of the image as the energy function. This
-produces very good results
+paper used the gradient magnitude of the image as the energy function in order
+to eliminate areas of low change, which is a reasonable proxy for
+``uninteresting'' parts of an image.
+
+Content-Aware image resizing, also referred to as image retargetting, is an
+interesting problem as it provides quick and immediate feedback regarding the
+success of an approach. In addition, it is one application of a larger problem
+of exploring what kinds of content and patterns are visually arresting to the
+human visual system. The heuristic to determine human interest in the original
+paper is both simple and effective for many classes of image.
+
+Seam Carving works quite well when applied to landscapes or other images where
+there are large patches of low and high variation. However, when applied to
+images with features that people are particularly attentive to (such as faces)
+the results can be noticeably bad and distorted. See Figure
+\ref{fig:laughcomparison} for a comparison between our method and the original seam
+carving algorithm (reimplemented for this paper).
+
+By combining the ability to selectively remove ``uninteresting'' parts of the
+image with the ability to detect high level features at an accuracy that can't
+be matched by a gradient based approach, we demonstrate adaptive image resizing
+that preserves faces and other high level content in a subjectively more
+pleasing and natural way.
+
+\begin{figure}[t]
+  \centering
+  \subfloat[Original]{{\includegraphics[width=0.8\linewidth]{people-laughing}}}
+  \qquad
+  \subfloat[Seam-Carving]{{\includegraphics[width=0.8\linewidth]{shrunkplain}}}
+  \qquad
+  \subfloat[Our Method]{{\includegraphics[width=0.8\linewidth]{smallfancylaughbest}}}
+  \caption{Comparison between the original method and our own. The bottom two
+    images are 80\% of the size of the original image.}
+  \label{fig:laughcomparison}
+\end{figure}
 
 %-------------------------------------------------------------------------
-\subsection{Language}
+\section{Prior Work}
 
-All manuscripts must be in English.
+Seam Carving \cite{seamcarve} works by selecting seams of the lowest energy in
+an image, and continuously removing them until a target size is reached. A seam
+is a connected path leading from one end to the other of an image in a
+particular dimension. Let $\boldsymbol{I}$ be an $n \times m$ image. Using the notation of
+the original paper, a vertical seam is:
 
-\subsection{Dual submission}
+\begin{equation}
+  \boldsymbol{s^x} = \{s_i^x\}_{i=1}^n = \{(x(i),i)\}_{i=1}^n, \text{s.t } \forall{i}, |x(i) - x(i-1)| \leq 1
+\end{equation}
 
-Please refer to the author guidelines on the CVPR 2018 web page for a
-discussion of the policy on dual submissions.
+where $x$ is a mapping of: $[1,...,n] \rightarrow [1,...,m]$. This is a
+connected path of pixels running from top to bottom of the image, with exactly
+one mapping between a row $x(i)$ and the horizontal location of the seam at that
+row. In the same way, a horizontal path consists of a mapping $y: [1,...,m]
+\rightarrow [1,...,n]$, and:
+
+\begin{equation}
+  \boldsymbol{s^y} = \{s_j^y\}_{j=1}^n = \{(y(j),j)\}_{j=1}^n, \text{s.t } \forall{j}, |y(j) - y(j-1)| \leq 1
+\end{equation}
+
+The pixels of the seam are therefore:
+\begin{equation}
+  \boldsymbol{I}_s = \{\boldsymbol{I}(s_i)\}_{i=1}^n = \{\boldsymbol{I}(x(i),i)\}_{i=1}^n
+\end{equation}
+
+Since seams are always of $1 \times n$ or $m \times 1$, their removal from an
+image will cause a reduction of exactly one pixel in either the width or height
+of the target image.
+
+With this idea, the optimal seam to remove from an image will be the one that
+minimizes the cost, where the cost is defined as the sum of the energy of the
+seam, where the energy can be an arbitrary function. The optimal seam $s^*$ is
+the one that minimizes this energy over the range of possible seams for a given
+dimension of the image:
+\begin{equation}
+  s^* = \min_s(E(s)) = \min_s \sum_{i=1}^n{e(\boldsymbol{I}(s_i))}
+\end{equation}
+
+The optimal seam can be found through a bottom-up dynamic programming approach,
+where we can create a scoring matrix $M$ by computing the minimum energy for all
+possible connected seams at a point by:
+
+\begin{equation*}
+  M(i, j) = e(i, j) + \min(M(i - 1, j - 1),M(i - 1, j),M(i - 1, j+1))
+\end{equation}
+
+After the scoring matrix is constructed, we can find the optimal seam by tracing
+up from the bottom and picking the minimum value of the three connected elements
+on the row above. The process is identical for horizontal seams, using the
+transpose of the original image.
+
+After the seam is found, it can be removed from the image and the whole process
+can be repeated until the desired image size in the specified dimension
+$n' \leq n$ is reached. A simplification from the original paper is made here.
+The authors propose a scheme for finding the optimal removal order of seams, but
+the qualitative difference in the modified image was negligible. A simpler
+approach was taken by simply applying horizontal seam removal to an image, and
+then transposing the resulting image and performing the process again, until the
+desired size was reached in each dimension.
+
+To enlarge an image from $n \times m$ to $n' \times m'$, it is not sufficient to
+simply add the optimal seam repeatedly, as this will most often insert the same
+seam repeatedly, causing obvious banding effects as seen in Figure
+\ref{fig:seaminsertion}.
+
+\begin{figure}[t]
+  \begin{center}
+    \subfloat[Optimal Seam Insertion]{{\includegraphics[width=0.8\linewidth]{badseaminsertion}}}
+    \qquad
+    \subfloat[Seams Inserted in order of Removal]{{\includegraphics[width=0.8\linewidth]{goodseaminsertion}}}
+    \caption{The result of inserting the optimal seam repeatedly and in order of
+      removal. (Figures taken from \cite{seamcarve})}
+    \label{fig:seaminsertion}
+  \end{center}
+\end{figure}
+
+To avoid this issue, it suffices to first shrink the image by $(n' - n, m' - m)$
+and then save the seams in the order of removal. After the image is fully
+resized, you then insert the removed seams back into the original image.
+
+The energy function is generally the gradient magnitude of the image,
+as the original authors experimented with different functions but all provided
+qualitatively similar results.
+
+\subsection{Limitations of Prior Work}
+
+The seam
 
 \subsection{Paper length}
 Papers, excluding the references section,
@@ -224,7 +342,7 @@ contracted to solve problem B.
 
 \noindent
 FAQ\medskip\\
-{\bf Q:} Are acknowledgements OK?\\
+{\bf Q:} Are acknowledgements OK?\kk\
 {\bf A:} No.  Leave them for the final copy.\medskip\\
 {\bf Q:} How do I cite my results reported in open challenges?
 {\bf A:} To conform with the double blind review policy, you can report results of other challenge participants together with your results in your paper. For your results, however, you should not identify yourself and should not mention your participation in the challenge. Instead present your results referring to the method proposed in your paper and draw conclusions based on the experimental comparison to other results.\medskip\\
@@ -410,16 +528,6 @@ effectively in print.  Many readers (and reviewers), even of an electronic
 copy, will choose to print your paper in order to read it.  You cannot
 insist that they do otherwise, and therefore must not assume that they can
 zoom in to see tiny details on a graphic.
-
-When placing figures in \LaTeX, it's almost always best to use
-\verb+\includegraphics+, and to specify the  figure width as a multiple of
-the line width as in the example below
-{\small\begin{verbatim}
-   \usepackage[dvips]{graphicx} ...
-   \includegraphics[width=0.8\linewidth]
-                   {myfile.eps}
-\end{verbatim}
-}
 
 
 %-------------------------------------------------------------------------
