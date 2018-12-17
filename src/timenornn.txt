@@ -1,0 +1,2050 @@
+Growth Iteration 98/154
+Growth Iteration 99/154
+Growth Iteration 100/154
+Growth Iteration 101/154
+Growth Iteration 102/154
+Growth Iteration 103/154
+Growth Iteration 104/154
+Growth Iteration 105/154
+Growth Iteration 106/154
+Growth Iteration 107/154
+Growth Iteration 108/154
+Growth Iteration 109/154
+Growth Iteration 110/154
+Growth Iteration 111/154
+Growth Iteration 112/154
+Growth Iteration 113/154
+Growth Iteration 114/154
+Growth Iteration 115/154
+Growth Iteration 116/154
+Growth Iteration 117/154
+Growth Iteration 118/154
+Growth Iteration 119/154
+Growth Iteration 120/154
+Growth Iteration 121/154
+Growth Iteration 122/154
+Growth Iteration 123/154
+Growth Iteration 124/154
+Growth Iteration 125/154
+Growth Iteration 126/154
+Growth Iteration 127/154
+Growth Iteration 128/154
+Growth Iteration 129/154
+Growth Iteration 130/154
+Growth Iteration 131/154
+Growth Iteration 132/154
+Growth Iteration 133/154
+Growth Iteration 134/154
+Growth Iteration 135/154
+Growth Iteration 136/154
+Growth Iteration 137/154
+Growth Iteration 138/154
+Growth Iteration 139/154
+Growth Iteration 140/154
+Growth Iteration 141/154
+Growth Iteration 142/154
+Growth Iteration 143/154
+Growth Iteration 144/154
+Growth Iteration 145/154
+Growth Iteration 146/154
+Growth Iteration 147/154
+Growth Iteration 148/154
+Growth Iteration 149/154
+Growth Iteration 150/154
+Growth Iteration 151/154
+Growth Iteration 152/154
+Growth Iteration 153/154
+Growth Iteration 154/154
+grow
+Iteration 1/86
+Iteration 2/86
+Iteration 3/86
+Iteration 4/86
+Iteration 5/86
+Iteration 6/86
+Iteration 7/86
+Iteration 8/86
+Iteration 9/86
+Iteration 10/86
+Iteration 11/86
+Iteration 12/86
+Iteration 13/86
+Iteration 14/86
+Iteration 15/86
+Iteration 16/86
+Iteration 17/86
+Iteration 18/86
+Iteration 19/86
+Iteration 20/86
+Iteration 21/86
+Iteration 22/86
+Iteration 23/86
+Iteration 24/86
+Iteration 25/86
+Iteration 26/86
+Iteration 27/86
+Iteration 28/86
+Iteration 29/86
+Iteration 30/86
+Iteration 31/86
+Iteration 32/86
+Iteration 33/86
+Iteration 34/86
+Iteration 35/86
+Iteration 36/86
+Iteration 37/86
+Iteration 38/86
+Iteration 39/86
+Iteration 40/86
+Iteration 41/86
+Iteration 42/86
+Iteration 43/86
+Iteration 44/86
+Iteration 45/86
+Iteration 46/86
+Iteration 47/86
+Iteration 48/86
+Iteration 49/86
+Iteration 50/86
+Iteration 51/86
+Iteration 52/86
+Iteration 53/86
+Iteration 54/86
+Iteration 55/86
+Iteration 56/86
+Iteration 57/86
+Iteration 58/86
+Iteration 59/86
+Iteration 60/86
+Iteration 61/86
+Iteration 62/86
+Iteration 63/86
+Iteration 64/86
+Iteration 65/86
+Iteration 66/86
+Iteration 67/86
+Iteration 68/86
+Iteration 69/86
+Iteration 70/86
+Iteration 71/86
+Iteration 72/86
+Iteration 73/86
+Iteration 74/86
+Iteration 75/86
+Iteration 76/86
+Iteration 77/86
+Iteration 78/86
+Iteration 79/86
+Iteration 80/86
+Iteration 81/86
+Iteration 82/86
+Iteration 83/86
+Iteration 84/86
+Iteration 85/86
+Iteration 86/86
+Growth Iteration 1/86
+Growth Iteration 2/86
+Growth Iteration 3/86
+Growth Iteration 4/86
+Growth Iteration 5/86
+Growth Iteration 6/86
+Growth Iteration 7/86
+Growth Iteration 8/86
+Growth Iteration 9/86
+Growth Iteration 10/86
+Growth Iteration 11/86
+Growth Iteration 12/86
+Growth Iteration 13/86
+Growth Iteration 14/86
+Growth Iteration 15/86
+Growth Iteration 16/86
+Growth Iteration 17/86
+Growth Iteration 18/86
+Growth Iteration 19/86
+Growth Iteration 20/86
+Growth Iteration 21/86
+Growth Iteration 22/86
+Growth Iteration 23/86
+Growth Iteration 24/86
+Growth Iteration 25/86
+Growth Iteration 26/86
+Growth Iteration 27/86
+Growth Iteration 28/86
+Growth Iteration 29/86
+Growth Iteration 30/86
+Growth Iteration 31/86
+Growth Iteration 32/86
+Growth Iteration 33/86
+Growth Iteration 34/86
+Growth Iteration 35/86
+Growth Iteration 36/86
+Growth Iteration 37/86
+Growth Iteration 38/86
+Growth Iteration 39/86
+Growth Iteration 40/86
+Growth Iteration 41/86
+Growth Iteration 42/86
+Growth Iteration 43/86
+Growth Iteration 44/86
+Growth Iteration 45/86
+Growth Iteration 46/86
+Growth Iteration 47/86
+Growth Iteration 48/86
+Growth Iteration 49/86
+Growth Iteration 50/86
+Growth Iteration 51/86
+Growth Iteration 52/86
+Growth Iteration 53/86
+Growth Iteration 54/86
+Growth Iteration 55/86
+Growth Iteration 56/86
+Growth Iteration 57/86
+Growth Iteration 58/86
+Growth Iteration 59/86
+Growth Iteration 60/86
+Growth Iteration 61/86
+Growth Iteration 62/86
+Growth Iteration 63/86
+Growth Iteration 64/86
+Growth Iteration 65/86
+Growth Iteration 66/86
+Growth Iteration 67/86
+Growth Iteration 68/86
+Growth Iteration 69/86
+Growth Iteration 70/86
+Growth Iteration 71/86
+Growth Iteration 72/86
+Growth Iteration 73/86
+Growth Iteration 74/86
+Growth Iteration 75/86
+Growth Iteration 76/86
+Growth Iteration 77/86
+Growth Iteration 78/86
+Growth Iteration 79/86
+Growth Iteration 80/86
+Growth Iteration 81/86
+Growth Iteration 82/86
+Growth Iteration 83/86
+Growth Iteration 84/86
+Growth Iteration 85/86
+Growth Iteration 86/86
+ 19.615752 seconds (83.08 M allocations: 19.556 GiB, 40.62% gc time)
+
+julia> for i ∈ 1.1:0.1:1.3
+           @time(resize(lunchImg, round.(Int, i .* size(lunchImg))))
+       end
+grow
+Iteration 1/77
+Iteration 2/77
+Iteration 3/77
+Iteration 4/77
+Iteration 5/77
+Iteration 6/77
+Iteration 7/77
+Iteration 8/77
+Iteration 9/77
+Iteration 10/77
+Iteration 11/77
+Iteration 12/77
+Iteration 13/77
+Iteration 14/77
+Iteration 15/77
+Iteration 16/77
+Iteration 17/77
+Iteration 18/77
+Iteration 19/77
+Iteration 20/77
+Iteration 21/77
+Iteration 22/77
+Iteration 23/77
+Iteration 24/77
+Iteration 25/77
+Iteration 26/77
+Iteration 27/77
+Iteration 28/77
+Iteration 29/77
+Iteration 30/77
+Iteration 31/77
+Iteration 32/77
+Iteration 33/77
+Iteration 34/77
+Iteration 35/77
+Iteration 36/77
+Iteration 37/77
+Iteration 38/77
+Iteration 39/77
+Iteration 40/77
+Iteration 41/77
+Iteration 42/77
+Iteration 43/77
+Iteration 44/77
+Iteration 45/77
+Iteration 46/77
+Iteration 47/77
+Iteration 48/77
+Iteration 49/77
+Iteration 50/77
+Iteration 51/77
+Iteration 52/77
+Iteration 53/77
+Iteration 54/77
+Iteration 55/77
+Iteration 56/77
+Iteration 57/77
+Iteration 58/77
+Iteration 59/77
+Iteration 60/77
+Iteration 61/77
+Iteration 62/77
+Iteration 63/77
+Iteration 64/77
+Iteration 65/77
+Iteration 66/77
+Iteration 67/77
+Iteration 68/77
+Iteration 69/77
+Iteration 70/77
+Iteration 71/77
+Iteration 72/77
+Iteration 73/77
+Iteration 74/77
+Iteration 75/77
+Iteration 76/77
+Iteration 77/77
+Growth Iteration 1/77
+Growth Iteration 2/77
+Growth Iteration 3/77
+Growth Iteration 4/77
+Growth Iteration 5/77
+Growth Iteration 6/77
+Growth Iteration 7/77
+Growth Iteration 8/77
+Growth Iteration 9/77
+Growth Iteration 10/77
+Growth Iteration 11/77
+Growth Iteration 12/77
+Growth Iteration 13/77
+Growth Iteration 14/77
+Growth Iteration 15/77
+Growth Iteration 16/77
+Growth Iteration 17/77
+Growth Iteration 18/77
+Growth Iteration 19/77
+Growth Iteration 20/77
+Growth Iteration 21/77
+Growth Iteration 22/77
+Growth Iteration 23/77
+Growth Iteration 24/77
+Growth Iteration 25/77
+Growth Iteration 26/77
+Growth Iteration 27/77
+Growth Iteration 28/77
+Growth Iteration 29/77
+Growth Iteration 30/77
+Growth Iteration 31/77
+Growth Iteration 32/77
+Growth Iteration 33/77
+Growth Iteration 34/77
+Growth Iteration 35/77
+Growth Iteration 36/77
+Growth Iteration 37/77
+Growth Iteration 38/77
+Growth Iteration 39/77
+Growth Iteration 40/77
+Growth Iteration 41/77
+Growth Iteration 42/77
+Growth Iteration 43/77
+Growth Iteration 44/77
+Growth Iteration 45/77
+Growth Iteration 46/77
+Growth Iteration 47/77
+Growth Iteration 48/77
+Growth Iteration 49/77
+Growth Iteration 50/77
+Growth Iteration 51/77
+Growth Iteration 52/77
+Growth Iteration 53/77
+Growth Iteration 54/77
+Growth Iteration 55/77
+Growth Iteration 56/77
+Growth Iteration 57/77
+Growth Iteration 58/77
+Growth Iteration 59/77
+Growth Iteration 60/77
+Growth Iteration 61/77
+Growth Iteration 62/77
+Growth Iteration 63/77
+Growth Iteration 64/77
+Growth Iteration 65/77
+Growth Iteration 66/77
+Growth Iteration 67/77
+Growth Iteration 68/77
+Growth Iteration 69/77
+Growth Iteration 70/77
+Growth Iteration 71/77
+Growth Iteration 72/77
+Growth Iteration 73/77
+Growth Iteration 74/77
+Growth Iteration 75/77
+Growth Iteration 76/77
+Growth Iteration 77/77
+grow
+Iteration 1/43
+Iteration 2/43
+Iteration 3/43
+Iteration 4/43
+Iteration 5/43
+Iteration 6/43
+Iteration 7/43
+Iteration 8/43
+Iteration 9/43
+Iteration 10/43
+Iteration 11/43
+Iteration 12/43
+Iteration 13/43
+Iteration 14/43
+Iteration 15/43
+Iteration 16/43
+Iteration 17/43
+Iteration 18/43
+Iteration 19/43
+Iteration 20/43
+Iteration 21/43
+Iteration 22/43
+Iteration 23/43
+Iteration 24/43
+Iteration 25/43
+Iteration 26/43
+Iteration 27/43
+Iteration 28/43
+Iteration 29/43
+Iteration 30/43
+Iteration 31/43
+Iteration 32/43
+Iteration 33/43
+Iteration 34/43
+Iteration 35/43
+Iteration 36/43
+Iteration 37/43
+Iteration 38/43
+Iteration 39/43
+Iteration 40/43
+Iteration 41/43
+Iteration 42/43
+Iteration 43/43
+Growth Iteration 1/43
+Growth Iteration 2/43
+Growth Iteration 3/43
+Growth Iteration 4/43
+Growth Iteration 5/43
+Growth Iteration 6/43
+Growth Iteration 7/43
+Growth Iteration 8/43
+Growth Iteration 9/43
+Growth Iteration 10/43
+Growth Iteration 11/43
+Growth Iteration 12/43
+Growth Iteration 13/43
+Growth Iteration 14/43
+Growth Iteration 15/43
+Growth Iteration 16/43
+Growth Iteration 17/43
+Growth Iteration 18/43
+Growth Iteration 19/43
+Growth Iteration 20/43
+Growth Iteration 21/43
+Growth Iteration 22/43
+Growth Iteration 23/43
+Growth Iteration 24/43
+Growth Iteration 25/43
+Growth Iteration 26/43
+Growth Iteration 27/43
+Growth Iteration 28/43
+Growth Iteration 29/43
+Growth Iteration 30/43
+Growth Iteration 31/43
+Growth Iteration 32/43
+Growth Iteration 33/43
+Growth Iteration 34/43
+Growth Iteration 35/43
+Growth Iteration 36/43
+Growth Iteration 37/43
+Growth Iteration 38/43
+Growth Iteration 39/43
+Growth Iteration 40/43
+Growth Iteration 41/43
+Growth Iteration 42/43
+Growth Iteration 43/43
+ 10.183162 seconds (42.14 M allocations: 9.925 GiB, 41.89% gc time)
+grow
+Iteration 1/154
+Iteration 2/154
+Iteration 3/154
+Iteration 4/154
+Iteration 5/154
+Iteration 6/154
+Iteration 7/154
+Iteration 8/154
+Iteration 9/154
+Iteration 10/154
+Iteration 11/154
+Iteration 12/154
+Iteration 13/154
+Iteration 14/154
+Iteration 15/154
+Iteration 16/154
+Iteration 17/154
+Iteration 18/154
+Iteration 19/154
+Iteration 20/154
+Iteration 21/154
+Iteration 22/154
+Iteration 23/154
+Iteration 24/154
+Iteration 25/154
+Iteration 26/154
+Iteration 27/154
+Iteration 28/154
+Iteration 29/154
+Iteration 30/154
+Iteration 31/154
+Iteration 32/154
+Iteration 33/154
+Iteration 34/154
+Iteration 35/154
+Iteration 36/154
+Iteration 37/154
+Iteration 38/154
+Iteration 39/154
+Iteration 40/154
+Iteration 41/154
+Iteration 42/154
+Iteration 43/154
+Iteration 44/154
+Iteration 45/154
+Iteration 46/154
+Iteration 47/154
+Iteration 48/154
+Iteration 49/154
+Iteration 50/154
+Iteration 51/154
+Iteration 52/154
+Iteration 53/154
+Iteration 54/154
+Iteration 55/154
+Iteration 56/154
+Iteration 57/154
+Iteration 58/154
+Iteration 59/154
+Iteration 60/154
+Iteration 61/154
+Iteration 62/154
+Iteration 63/154
+Iteration 64/154
+Iteration 65/154
+Iteration 66/154
+Iteration 67/154
+Iteration 68/154
+Iteration 69/154
+Iteration 70/154
+Iteration 71/154
+Iteration 72/154
+Iteration 73/154
+Iteration 74/154
+Iteration 75/154
+Iteration 76/154
+Iteration 77/154
+Iteration 78/154
+Iteration 79/154
+Iteration 80/154
+Iteration 81/154
+Iteration 82/154
+Iteration 83/154
+Iteration 84/154
+Iteration 85/154
+Iteration 86/154
+Iteration 87/154
+Iteration 88/154
+Iteration 89/154
+Iteration 90/154
+Iteration 91/154
+Iteration 92/154
+Iteration 93/154
+Iteration 94/154
+Iteration 95/154
+Iteration 96/154
+Iteration 97/154
+Iteration 98/154
+Iteration 99/154
+Iteration 100/154
+Iteration 101/154
+Iteration 102/154
+Iteration 103/154
+Iteration 104/154
+Iteration 105/154
+Iteration 106/154
+Iteration 107/154
+Iteration 108/154
+Iteration 109/154
+Iteration 110/154
+Iteration 111/154
+Iteration 112/154
+Iteration 113/154
+Iteration 114/154
+Iteration 115/154
+Iteration 116/154
+Iteration 117/154
+Iteration 118/154
+Iteration 119/154
+Iteration 120/154
+Iteration 121/154
+Iteration 122/154
+Iteration 123/154
+Iteration 124/154
+Iteration 125/154
+Iteration 126/154
+Iteration 127/154
+Iteration 128/154
+Iteration 129/154
+Iteration 130/154
+Iteration 131/154
+Iteration 132/154
+Iteration 133/154
+Iteration 134/154
+Iteration 135/154
+Iteration 136/154
+Iteration 137/154
+Iteration 138/154
+Iteration 139/154
+Iteration 140/154
+Iteration 141/154
+Iteration 142/154
+Iteration 143/154
+Iteration 144/154
+Iteration 145/154
+Iteration 146/154
+Iteration 147/154
+Iteration 148/154
+Iteration 149/154
+Iteration 150/154
+Iteration 151/154
+Iteration 152/154
+Iteration 153/154
+Iteration 154/154
+Growth Iteration 1/154
+Growth Iteration 2/154
+Growth Iteration 3/154
+Growth Iteration 4/154
+Growth Iteration 5/154
+Growth Iteration 6/154
+Growth Iteration 7/154
+Growth Iteration 8/154
+Growth Iteration 9/154
+Growth Iteration 10/154
+Growth Iteration 11/154
+Growth Iteration 12/154
+Growth Iteration 13/154
+Growth Iteration 14/154
+Growth Iteration 15/154
+Growth Iteration 16/154
+Growth Iteration 17/154
+Growth Iteration 18/154
+Growth Iteration 19/154
+Growth Iteration 20/154
+Growth Iteration 21/154
+Growth Iteration 22/154
+Growth Iteration 23/154
+Growth Iteration 24/154
+Growth Iteration 25/154
+Growth Iteration 26/154
+Growth Iteration 27/154
+Growth Iteration 28/154
+Growth Iteration 29/154
+Growth Iteration 30/154
+Growth Iteration 31/154
+Growth Iteration 32/154
+Growth Iteration 33/154
+Growth Iteration 34/154
+Growth Iteration 35/154
+Growth Iteration 36/154
+Growth Iteration 37/154
+Growth Iteration 38/154
+Growth Iteration 39/154
+Growth Iteration 40/154
+Growth Iteration 41/154
+Growth Iteration 42/154
+Growth Iteration 43/154
+Growth Iteration 44/154
+Growth Iteration 45/154
+Growth Iteration 46/154
+Growth Iteration 47/154
+Growth Iteration 48/154
+Growth Iteration 49/154
+Growth Iteration 50/154
+Growth Iteration 51/154
+Growth Iteration 52/154
+Growth Iteration 53/154
+Growth Iteration 54/154
+Growth Iteration 55/154
+Growth Iteration 56/154
+Growth Iteration 57/154
+Growth Iteration 58/154
+Growth Iteration 59/154
+Growth Iteration 60/154
+Growth Iteration 61/154
+Growth Iteration 62/154
+Growth Iteration 63/154
+Growth Iteration 64/154
+Growth Iteration 65/154
+Growth Iteration 66/154
+Growth Iteration 67/154
+Growth Iteration 68/154
+Growth Iteration 69/154
+Growth Iteration 70/154
+Growth Iteration 71/154
+Growth Iteration 72/154
+Growth Iteration 73/154
+Growth Iteration 74/154
+Growth Iteration 75/154
+Growth Iteration 76/154
+Growth Iteration 77/154
+Growth Iteration 78/154
+Growth Iteration 79/154
+Growth Iteration 80/154
+Growth Iteration 81/154
+Growth Iteration 82/154
+Growth Iteration 83/154
+Growth Iteration 84/154
+Growth Iteration 85/154
+Growth Iteration 86/154
+Growth Iteration 87/154
+Growth Iteration 88/154
+Growth Iteration 89/154
+Growth Iteration 90/154
+Growth Iteration 91/154
+Growth Iteration 92/154
+Growth Iteration 93/154
+Growth Iteration 94/154
+Growth Iteration 95/154
+Growth Iteration 96/154
+Growth Iteration 97/154
+Growth Iteration 98/154
+Growth Iteration 99/154
+Growth Iteration 100/154
+Growth Iteration 101/154
+Growth Iteration 102/154
+Growth Iteration 103/154
+Growth Iteration 104/154
+Growth Iteration 105/154
+Growth Iteration 106/154
+Growth Iteration 107/154
+Growth Iteration 108/154
+Growth Iteration 109/154
+Growth Iteration 110/154
+Growth Iteration 111/154
+Growth Iteration 112/154
+Growth Iteration 113/154
+Growth Iteration 114/154
+Growth Iteration 115/154
+Growth Iteration 116/154
+Growth Iteration 117/154
+Growth Iteration 118/154
+Growth Iteration 119/154
+Growth Iteration 120/154
+Growth Iteration 121/154
+Growth Iteration 122/154
+Growth Iteration 123/154
+Growth Iteration 124/154
+Growth Iteration 125/154
+Growth Iteration 126/154
+Growth Iteration 127/154
+Growth Iteration 128/154
+Growth Iteration 129/154
+Growth Iteration 130/154
+Growth Iteration 131/154
+Growth Iteration 132/154
+Growth Iteration 133/154
+Growth Iteration 134/154
+Growth Iteration 135/154
+Growth Iteration 136/154
+Growth Iteration 137/154
+Growth Iteration 138/154
+Growth Iteration 139/154
+Growth Iteration 140/154
+Growth Iteration 141/154
+Growth Iteration 142/154
+Growth Iteration 143/154
+Growth Iteration 144/154
+Growth Iteration 145/154
+Growth Iteration 146/154
+Growth Iteration 147/154
+Growth Iteration 148/154
+Growth Iteration 149/154
+Growth Iteration 150/154
+Growth Iteration 151/154
+Growth Iteration 152/154
+Growth Iteration 153/154
+Growth Iteration 154/154
+grow
+Iteration 1/86
+Iteration 2/86
+Iteration 3/86
+Iteration 4/86
+Iteration 5/86
+Iteration 6/86
+Iteration 7/86
+Iteration 8/86
+Iteration 9/86
+Iteration 10/86
+Iteration 11/86
+Iteration 12/86
+Iteration 13/86
+Iteration 14/86
+Iteration 15/86
+Iteration 16/86
+Iteration 17/86
+Iteration 18/86
+Iteration 19/86
+Iteration 20/86
+Iteration 21/86
+Iteration 22/86
+Iteration 23/86
+Iteration 24/86
+Iteration 25/86
+Iteration 26/86
+Iteration 27/86
+Iteration 28/86
+Iteration 29/86
+Iteration 30/86
+Iteration 31/86
+Iteration 32/86
+Iteration 33/86
+Iteration 34/86
+Iteration 35/86
+Iteration 36/86
+Iteration 37/86
+Iteration 38/86
+Iteration 39/86
+Iteration 40/86
+Iteration 41/86
+Iteration 42/86
+Iteration 43/86
+Iteration 44/86
+Iteration 45/86
+Iteration 46/86
+Iteration 47/86
+Iteration 48/86
+Iteration 49/86
+Iteration 50/86
+Iteration 51/86
+Iteration 52/86
+Iteration 53/86
+Iteration 54/86
+Iteration 55/86
+Iteration 56/86
+Iteration 57/86
+Iteration 58/86
+Iteration 59/86
+Iteration 60/86
+Iteration 61/86
+Iteration 62/86
+Iteration 63/86
+Iteration 64/86
+Iteration 65/86
+Iteration 66/86
+Iteration 67/86
+Iteration 68/86
+Iteration 69/86
+Iteration 70/86
+Iteration 71/86
+Iteration 72/86
+Iteration 73/86
+Iteration 74/86
+Iteration 75/86
+Iteration 76/86
+Iteration 77/86
+Iteration 78/86
+Iteration 79/86
+Iteration 80/86
+Iteration 81/86
+Iteration 82/86
+Iteration 83/86
+Iteration 84/86
+Iteration 85/86
+Iteration 86/86
+Growth Iteration 1/86
+Growth Iteration 2/86
+Growth Iteration 3/86
+Growth Iteration 4/86
+Growth Iteration 5/86
+Growth Iteration 6/86
+Growth Iteration 7/86
+Growth Iteration 8/86
+Growth Iteration 9/86
+Growth Iteration 10/86
+Growth Iteration 11/86
+Growth Iteration 12/86
+Growth Iteration 13/86
+Growth Iteration 14/86
+Growth Iteration 15/86
+Growth Iteration 16/86
+Growth Iteration 17/86
+Growth Iteration 18/86
+Growth Iteration 19/86
+Growth Iteration 20/86
+Growth Iteration 21/86
+Growth Iteration 22/86
+Growth Iteration 23/86
+Growth Iteration 24/86
+Growth Iteration 25/86
+Growth Iteration 26/86
+Growth Iteration 27/86
+Growth Iteration 28/86
+Growth Iteration 29/86
+Growth Iteration 30/86
+Growth Iteration 31/86
+Growth Iteration 32/86
+Growth Iteration 33/86
+Growth Iteration 34/86
+Growth Iteration 35/86
+Growth Iteration 36/86
+Growth Iteration 37/86
+Growth Iteration 38/86
+Growth Iteration 39/86
+Growth Iteration 40/86
+Growth Iteration 41/86
+Growth Iteration 42/86
+Growth Iteration 43/86
+Growth Iteration 44/86
+Growth Iteration 45/86
+Growth Iteration 46/86
+Growth Iteration 47/86
+Growth Iteration 48/86
+Growth Iteration 49/86
+Growth Iteration 50/86
+Growth Iteration 51/86
+Growth Iteration 52/86
+Growth Iteration 53/86
+Growth Iteration 54/86
+Growth Iteration 55/86
+Growth Iteration 56/86
+Growth Iteration 57/86
+Growth Iteration 58/86
+Growth Iteration 59/86
+Growth Iteration 60/86
+Growth Iteration 61/86
+Growth Iteration 62/86
+Growth Iteration 63/86
+Growth Iteration 64/86
+Growth Iteration 65/86
+Growth Iteration 66/86
+Growth Iteration 67/86
+Growth Iteration 68/86
+Growth Iteration 69/86
+Growth Iteration 70/86
+Growth Iteration 71/86
+Growth Iteration 72/86
+Growth Iteration 73/86
+Growth Iteration 74/86
+Growth Iteration 75/86
+Growth Iteration 76/86
+Growth Iteration 77/86
+Growth Iteration 78/86
+Growth Iteration 79/86
+Growth Iteration 80/86
+Growth Iteration 81/86
+Growth Iteration 82/86
+Growth Iteration 83/86
+Growth Iteration 84/86
+Growth Iteration 85/86
+Growth Iteration 86/86
+ 19.587975 seconds (83.08 M allocations: 19.556 GiB, 40.75% gc time)
+grow
+Iteration 1/230
+Iteration 2/230
+Iteration 3/230
+Iteration 4/230
+Iteration 5/230
+Iteration 6/230
+Iteration 7/230
+Iteration 8/230
+Iteration 9/230
+Iteration 10/230
+Iteration 11/230
+Iteration 12/230
+Iteration 13/230
+Iteration 14/230
+Iteration 15/230
+Iteration 16/230
+Iteration 17/230
+Iteration 18/230
+Iteration 19/230
+Iteration 20/230
+Iteration 21/230
+Iteration 22/230
+Iteration 23/230
+Iteration 24/230
+Iteration 25/230
+Iteration 26/230
+Iteration 27/230
+Iteration 28/230
+Iteration 29/230
+Iteration 30/230
+Iteration 31/230
+Iteration 32/230
+Iteration 33/230
+Iteration 34/230
+Iteration 35/230
+Iteration 36/230
+Iteration 37/230
+Iteration 38/230
+Iteration 39/230
+Iteration 40/230
+Iteration 41/230
+Iteration 42/230
+Iteration 43/230
+Iteration 44/230
+Iteration 45/230
+Iteration 46/230
+Iteration 47/230
+Iteration 48/230
+Iteration 49/230
+Iteration 50/230
+Iteration 51/230
+Iteration 52/230
+Iteration 53/230
+Iteration 54/230
+Iteration 55/230
+Iteration 56/230
+Iteration 57/230
+Iteration 58/230
+Iteration 59/230
+Iteration 60/230
+Iteration 61/230
+Iteration 62/230
+Iteration 63/230
+Iteration 64/230
+Iteration 65/230
+Iteration 66/230
+Iteration 67/230
+Iteration 68/230
+Iteration 69/230
+Iteration 70/230
+Iteration 71/230
+Iteration 72/230
+Iteration 73/230
+Iteration 74/230
+Iteration 75/230
+Iteration 76/230
+Iteration 77/230
+Iteration 78/230
+Iteration 79/230
+Iteration 80/230
+Iteration 81/230
+Iteration 82/230
+Iteration 83/230
+Iteration 84/230
+Iteration 85/230
+Iteration 86/230
+Iteration 87/230
+Iteration 88/230
+Iteration 89/230
+Iteration 90/230
+Iteration 91/230
+Iteration 92/230
+Iteration 93/230
+Iteration 94/230
+Iteration 95/230
+Iteration 96/230
+Iteration 97/230
+Iteration 98/230
+Iteration 99/230
+Iteration 100/230
+Iteration 101/230
+Iteration 102/230
+Iteration 103/230
+Iteration 104/230
+Iteration 105/230
+Iteration 106/230
+Iteration 107/230
+Iteration 108/230
+Iteration 109/230
+Iteration 110/230
+Iteration 111/230
+Iteration 112/230
+Iteration 113/230
+Iteration 114/230
+Iteration 115/230
+Iteration 116/230
+Iteration 117/230
+Iteration 118/230
+Iteration 119/230
+Iteration 120/230
+Iteration 121/230
+Iteration 122/230
+Iteration 123/230
+Iteration 124/230
+Iteration 125/230
+Iteration 126/230
+Iteration 127/230
+Iteration 128/230
+Iteration 129/230
+Iteration 130/230
+Iteration 131/230
+Iteration 132/230
+Iteration 133/230
+Iteration 134/230
+Iteration 135/230
+Iteration 136/230
+Iteration 137/230
+Iteration 138/230
+Iteration 139/230
+Iteration 140/230
+Iteration 141/230
+Iteration 142/230
+Iteration 143/230
+Iteration 144/230
+Iteration 145/230
+Iteration 146/230
+Iteration 147/230
+Iteration 148/230
+Iteration 149/230
+Iteration 150/230
+Iteration 151/230
+Iteration 152/230
+Iteration 153/230
+Iteration 154/230
+Iteration 155/230
+Iteration 156/230
+Iteration 157/230
+Iteration 158/230
+Iteration 159/230
+Iteration 160/230
+Iteration 161/230
+Iteration 162/230
+Iteration 163/230
+Iteration 164/230
+Iteration 165/230
+Iteration 166/230
+Iteration 167/230
+Iteration 168/230
+Iteration 169/230
+Iteration 170/230
+Iteration 171/230
+Iteration 172/230
+Iteration 173/230
+Iteration 174/230
+Iteration 175/230
+Iteration 176/230
+Iteration 177/230
+Iteration 178/230
+Iteration 179/230
+Iteration 180/230
+Iteration 181/230
+Iteration 182/230
+Iteration 183/230
+Iteration 184/230
+Iteration 185/230
+Iteration 186/230
+Iteration 187/230
+Iteration 188/230
+Iteration 189/230
+Iteration 190/230
+Iteration 191/230
+Iteration 192/230
+Iteration 193/230
+Iteration 194/230
+Iteration 195/230
+Iteration 196/230
+Iteration 197/230
+Iteration 198/230
+Iteration 199/230
+Iteration 200/230
+Iteration 201/230
+Iteration 202/230
+Iteration 203/230
+Iteration 204/230
+Iteration 205/230
+Iteration 206/230
+Iteration 207/230
+Iteration 208/230
+Iteration 209/230
+Iteration 210/230
+Iteration 211/230
+Iteration 212/230
+Iteration 213/230
+Iteration 214/230
+Iteration 215/230
+Iteration 216/230
+Iteration 217/230
+Iteration 218/230
+Iteration 219/230
+Iteration 220/230
+Iteration 221/230
+Iteration 222/230
+Iteration 223/230
+Iteration 224/230
+Iteration 225/230
+Iteration 226/230
+Iteration 227/230
+Iteration 228/230
+Iteration 229/230
+Iteration 230/230
+Growth Iteration 1/230
+Growth Iteration 2/230
+Growth Iteration 3/230
+Growth Iteration 4/230
+Growth Iteration 5/230
+Growth Iteration 6/230
+Growth Iteration 7/230
+Growth Iteration 8/230
+Growth Iteration 9/230
+Growth Iteration 10/230
+Growth Iteration 11/230
+Growth Iteration 12/230
+Growth Iteration 13/230
+Growth Iteration 14/230
+Growth Iteration 15/230
+Growth Iteration 16/230
+Growth Iteration 17/230
+Growth Iteration 18/230
+Growth Iteration 19/230
+Growth Iteration 20/230
+Growth Iteration 21/230
+Growth Iteration 22/230
+Growth Iteration 23/230
+Growth Iteration 24/230
+Growth Iteration 25/230
+Growth Iteration 26/230
+Growth Iteration 27/230
+Growth Iteration 28/230
+Growth Iteration 29/230
+Growth Iteration 30/230
+Growth Iteration 31/230
+Growth Iteration 32/230
+Growth Iteration 33/230
+Growth Iteration 34/230
+Growth Iteration 35/230
+Growth Iteration 36/230
+Growth Iteration 37/230
+Growth Iteration 38/230
+Growth Iteration 39/230
+Growth Iteration 40/230
+Growth Iteration 41/230
+Growth Iteration 42/230
+Growth Iteration 43/230
+Growth Iteration 44/230
+Growth Iteration 45/230
+Growth Iteration 46/230
+Growth Iteration 47/230
+Growth Iteration 48/230
+Growth Iteration 49/230
+Growth Iteration 50/230
+Growth Iteration 51/230
+Growth Iteration 52/230
+Growth Iteration 53/230
+Growth Iteration 54/230
+Growth Iteration 55/230
+Growth Iteration 56/230
+Growth Iteration 57/230
+Growth Iteration 58/230
+Growth Iteration 59/230
+Growth Iteration 60/230
+Growth Iteration 61/230
+Growth Iteration 62/230
+Growth Iteration 63/230
+Growth Iteration 64/230
+Growth Iteration 65/230
+Growth Iteration 66/230
+Growth Iteration 67/230
+Growth Iteration 68/230
+Growth Iteration 69/230
+Growth Iteration 70/230
+Growth Iteration 71/230
+Growth Iteration 72/230
+Growth Iteration 73/230
+Growth Iteration 74/230
+Growth Iteration 75/230
+Growth Iteration 76/230
+Growth Iteration 77/230
+Growth Iteration 78/230
+Growth Iteration 79/230
+Growth Iteration 80/230
+Growth Iteration 81/230
+Growth Iteration 82/230
+Growth Iteration 83/230
+Growth Iteration 84/230
+Growth Iteration 85/230
+Growth Iteration 86/230
+Growth Iteration 87/230
+Growth Iteration 88/230
+Growth Iteration 89/230
+Growth Iteration 90/230
+Growth Iteration 91/230
+Growth Iteration 92/230
+Growth Iteration 93/230
+Growth Iteration 94/230
+Growth Iteration 95/230
+Growth Iteration 96/230
+Growth Iteration 97/230
+Growth Iteration 98/230
+Growth Iteration 99/230
+Growth Iteration 100/230
+Growth Iteration 101/230
+Growth Iteration 102/230
+Growth Iteration 103/230
+Growth Iteration 104/230
+Growth Iteration 105/230
+Growth Iteration 106/230
+Growth Iteration 107/230
+Growth Iteration 108/230
+Growth Iteration 109/230
+Growth Iteration 110/230
+Growth Iteration 111/230
+Growth Iteration 112/230
+Growth Iteration 113/230
+Growth Iteration 114/230
+Growth Iteration 115/230
+Growth Iteration 116/230
+Growth Iteration 117/230
+Growth Iteration 118/230
+Growth Iteration 119/230
+Growth Iteration 120/230
+Growth Iteration 121/230
+Growth Iteration 122/230
+Growth Iteration 123/230
+Growth Iteration 124/230
+Growth Iteration 125/230
+Growth Iteration 126/230
+Growth Iteration 127/230
+Growth Iteration 128/230
+Growth Iteration 129/230
+Growth Iteration 130/230
+Growth Iteration 131/230
+Growth Iteration 132/230
+Growth Iteration 133/230
+Growth Iteration 134/230
+Growth Iteration 135/230
+Growth Iteration 136/230
+Growth Iteration 137/230
+Growth Iteration 138/230
+Growth Iteration 139/230
+Growth Iteration 140/230
+Growth Iteration 141/230
+Growth Iteration 142/230
+Growth Iteration 143/230
+Growth Iteration 144/230
+Growth Iteration 145/230
+Growth Iteration 146/230
+Growth Iteration 147/230
+Growth Iteration 148/230
+Growth Iteration 149/230
+Growth Iteration 150/230
+Growth Iteration 151/230
+Growth Iteration 152/230
+Growth Iteration 153/230
+Growth Iteration 154/230
+Growth Iteration 155/230
+Growth Iteration 156/230
+Growth Iteration 157/230
+Growth Iteration 158/230
+Growth Iteration 159/230
+Growth Iteration 160/230
+Growth Iteration 161/230
+Growth Iteration 162/230
+Growth Iteration 163/230
+Growth Iteration 164/230
+Growth Iteration 165/230
+Growth Iteration 166/230
+Growth Iteration 167/230
+Growth Iteration 168/230
+Growth Iteration 169/230
+Growth Iteration 170/230
+Growth Iteration 171/230
+Growth Iteration 172/230
+Growth Iteration 173/230
+Growth Iteration 174/230
+Growth Iteration 175/230
+Growth Iteration 176/230
+Growth Iteration 177/230
+Growth Iteration 178/230
+Growth Iteration 179/230
+Growth Iteration 180/230
+Growth Iteration 181/230
+Growth Iteration 182/230
+Growth Iteration 183/230
+Growth Iteration 184/230
+Growth Iteration 185/230
+Growth Iteration 186/230
+Growth Iteration 187/230
+Growth Iteration 188/230
+Growth Iteration 189/230
+Growth Iteration 190/230
+Growth Iteration 191/230
+Growth Iteration 192/230
+Growth Iteration 193/230
+Growth Iteration 194/230
+Growth Iteration 195/230
+Growth Iteration 196/230
+Growth Iteration 197/230
+Growth Iteration 198/230
+Growth Iteration 199/230
+Growth Iteration 200/230
+Growth Iteration 201/230
+Growth Iteration 202/230
+Growth Iteration 203/230
+Growth Iteration 204/230
+Growth Iteration 205/230
+Growth Iteration 206/230
+Growth Iteration 207/230
+Growth Iteration 208/230
+Growth Iteration 209/230
+Growth Iteration 210/230
+Growth Iteration 211/230
+Growth Iteration 212/230
+Growth Iteration 213/230
+Growth Iteration 214/230
+Growth Iteration 215/230
+Growth Iteration 216/230
+Growth Iteration 217/230
+Growth Iteration 218/230
+Growth Iteration 219/230
+Growth Iteration 220/230
+Growth Iteration 221/230
+Growth Iteration 222/230
+Growth Iteration 223/230
+Growth Iteration 224/230
+Growth Iteration 225/230
+Growth Iteration 226/230
+Growth Iteration 227/230
+Growth Iteration 228/230
+Growth Iteration 229/230
+Growth Iteration 230/230
+grow
+Iteration 1/130
+Iteration 2/130
+Iteration 3/130
+Iteration 4/130
+Iteration 5/130
+Iteration 6/130
+Iteration 7/130
+Iteration 8/130
+Iteration 9/130
+Iteration 10/130
+Iteration 11/130
+Iteration 12/130
+Iteration 13/130
+Iteration 14/130
+Iteration 15/130
+Iteration 16/130
+Iteration 17/130
+Iteration 18/130
+Iteration 19/130
+Iteration 20/130
+Iteration 21/130
+Iteration 22/130
+Iteration 23/130
+Iteration 24/130
+Iteration 25/130
+Iteration 26/130
+Iteration 27/130
+Iteration 28/130
+Iteration 29/130
+Iteration 30/130
+Iteration 31/130
+Iteration 32/130
+Iteration 33/130
+Iteration 34/130
+Iteration 35/130
+Iteration 36/130
+Iteration 37/130
+Iteration 38/130
+Iteration 39/130
+Iteration 40/130
+Iteration 41/130
+Iteration 42/130
+Iteration 43/130
+Iteration 44/130
+Iteration 45/130
+Iteration 46/130
+Iteration 47/130
+Iteration 48/130
+Iteration 49/130
+Iteration 50/130
+Iteration 51/130
+Iteration 52/130
+Iteration 53/130
+Iteration 54/130
+Iteration 55/130
+Iteration 56/130
+Iteration 57/130
+Iteration 58/130
+Iteration 59/130
+Iteration 60/130
+Iteration 61/130
+Iteration 62/130
+Iteration 63/130
+Iteration 64/130
+Iteration 65/130
+Iteration 66/130
+Iteration 67/130
+Iteration 68/130
+Iteration 69/130
+Iteration 70/130
+Iteration 71/130
+Iteration 72/130
+Iteration 73/130
+Iteration 74/130
+Iteration 75/130
+Iteration 76/130
+Iteration 77/130
+Iteration 78/130
+Iteration 79/130
+Iteration 80/130
+Iteration 81/130
+Iteration 82/130
+Iteration 83/130
+Iteration 84/130
+Iteration 85/130
+Iteration 86/130
+Iteration 87/130
+Iteration 88/130
+Iteration 89/130
+Iteration 90/130
+Iteration 91/130
+Iteration 92/130
+Iteration 93/130
+Iteration 94/130
+Iteration 95/130
+Iteration 96/130
+Iteration 97/130
+Iteration 98/130
+Iteration 99/130
+Iteration 100/130
+Iteration 101/130
+Iteration 102/130
+Iteration 103/130
+Iteration 104/130
+Iteration 105/130
+Iteration 106/130
+Iteration 107/130
+Iteration 108/130
+Iteration 109/130
+Iteration 110/130
+Iteration 111/130
+Iteration 112/130
+Iteration 113/130
+Iteration 114/130
+Iteration 115/130
+Iteration 116/130
+Iteration 117/130
+Iteration 118/130
+Iteration 119/130
+Iteration 120/130
+Iteration 121/130
+Iteration 122/130
+Iteration 123/130
+Iteration 124/130
+Iteration 125/130
+Iteration 126/130
+Iteration 127/130
+Iteration 128/130
+Iteration 129/130
+Iteration 130/130
+Growth Iteration 1/130
+Growth Iteration 2/130
+Growth Iteration 3/130
+Growth Iteration 4/130
+Growth Iteration 5/130
+Growth Iteration 6/130
+Growth Iteration 7/130
+Growth Iteration 8/130
+Growth Iteration 9/130
+Growth Iteration 10/130
+Growth Iteration 11/130
+Growth Iteration 12/130
+Growth Iteration 13/130
+Growth Iteration 14/130
+Growth Iteration 15/130
+Growth Iteration 16/130
+Growth Iteration 17/130
+Growth Iteration 18/130
+Growth Iteration 19/130
+Growth Iteration 20/130
+Growth Iteration 21/130
+Growth Iteration 22/130
+Growth Iteration 23/130
+Growth Iteration 24/130
+Growth Iteration 25/130
+Growth Iteration 26/130
+Growth Iteration 27/130
+Growth Iteration 28/130
+Growth Iteration 29/130
+Growth Iteration 30/130
+Growth Iteration 31/130
+Growth Iteration 32/130
+Growth Iteration 33/130
+Growth Iteration 34/130
+Growth Iteration 35/130
+Growth Iteration 36/130
+Growth Iteration 37/130
+Growth Iteration 38/130
+Growth Iteration 39/130
+Growth Iteration 40/130
+Growth Iteration 41/130
+Growth Iteration 42/130
+Growth Iteration 43/130
+Growth Iteration 44/130
+Growth Iteration 45/130
+Growth Iteration 46/130
+Growth Iteration 47/130
+Growth Iteration 48/130
+Growth Iteration 49/130
+Growth Iteration 50/130
+Growth Iteration 51/130
+Growth Iteration 52/130
+Growth Iteration 53/130
+Growth Iteration 54/130
+Growth Iteration 55/130
+Growth Iteration 56/130
+Growth Iteration 57/130
+Growth Iteration 58/130
+Growth Iteration 59/130
+Growth Iteration 60/130
+Growth Iteration 61/130
+Growth Iteration 62/130
+Growth Iteration 63/130
+Growth Iteration 64/130
+Growth Iteration 65/130
+Growth Iteration 66/130
+Growth Iteration 67/130
+Growth Iteration 68/130
+Growth Iteration 69/130
+Growth Iteration 70/130
+Growth Iteration 71/130
+Growth Iteration 72/130
+Growth Iteration 73/130
+Growth Iteration 74/130
+Growth Iteration 75/130
+Growth Iteration 76/130
+Growth Iteration 77/130
+Growth Iteration 78/130
+Growth Iteration 79/130
+Growth Iteration 80/130
+Growth Iteration 81/130
+Growth Iteration 82/130
+Growth Iteration 83/130
+Growth Iteration 84/130
+Growth Iteration 85/130
+Growth Iteration 86/130
+Growth Iteration 87/130
+Growth Iteration 88/130
+Growth Iteration 89/130
+Growth Iteration 90/130
+Growth Iteration 91/130
+Growth Iteration 92/130
+Growth Iteration 93/130
+Growth Iteration 94/130
+Growth Iteration 95/130
+Growth Iteration 96/130
+Growth Iteration 97/130
+Growth Iteration 98/130
+Growth Iteration 99/130
+Growth Iteration 100/130
+Growth Iteration 101/130
+Growth Iteration 102/130
+Growth Iteration 103/130
+Growth Iteration 104/130
+Growth Iteration 105/130
+Growth Iteration 106/130
+Growth Iteration 107/130
+Growth Iteration 108/130
+Growth Iteration 109/130
+Growth Iteration 110/130
+Growth Iteration 111/130
+Growth Iteration 112/130
+Growth Iteration 113/130
+Growth Iteration 114/130
+Growth Iteration 115/130
+Growth Iteration 116/130
+Growth Iteration 117/130
+Growth Iteration 118/130
+Growth Iteration 119/130
+Growth Iteration 120/130
+Growth Iteration 121/130
+Growth Iteration 122/130
+Growth Iteration 123/130
+Growth Iteration 124/130
+Growth Iteration 125/130
+Growth Iteration 126/130
+Growth Iteration 127/130
+Growth Iteration 128/130
+Growth Iteration 129/130
+Growth Iteration 130/130
+ 27.629700 seconds (122.40 M allocations: 28.807 GiB, 37.93% gc time)
+
+julia> for i ∈ 0.8:0.1:1.2
+           @time(resize(lunchImg, round.(Int, i .* size(lunchImg))),fancy=true)
+       end
+ERROR: LoadError: MethodError: no method matching @time(::LineNumberNode, ::Module, ::Expr, ::Expr)
+Closest candidates are:
+  @time(::LineNumberNode, ::Module, ::Any) at util.jl:153
+in expression starting at REPL[12]:2
+
+julia> for i ∈ 0.8:0.1:1.2
+           @time(resize(lunchImg, round.(Int, i .* size(lunchImg)),fancy=true)
+       end
+ERROR: syntax: missing comma or ) in argument list
+
+julia> for i ∈ 0.8:0.1:1.2
+           @time resize(lunchImg, round.(Int, i .* size(lunchImg)),fancy=true)
+       end
+shrink
+Iteration 1/154
+Iteration 2/154
+Iteration 3/154
+Iteration 4/154
+Iteration 5/154
+Iteration 6/154
+Iteration 7/154
+Iteration 8/154
+Iteration 9/154
+Iteration 10/154
+Iteration 11/154
+Iteration 12/154
+Iteration 13/154
+Iteration 14/154
+Iteration 15/154
+Iteration 16/154
+Iteration 17/154
+Iteration 18/154
+Iteration 19/154
+Iteration 20/154
+Iteration 21/154
+Iteration 22/154
+Iteration 23/154
+Iteration 24/154
+Iteration 25/154
+Iteration 26/154
+Iteration 27/154
+Iteration 28/154
+Iteration 29/154
+Iteration 30/154
+Iteration 31/154
+Iteration 32/154
+Iteration 33/154
+Iteration 34/154
+Iteration 35/154
+Iteration 36/154
+Iteration 37/154
+Iteration 38/154
+Iteration 39/154
+Iteration 40/154
+Iteration 41/154
+Iteration 42/154
+Iteration 43/154
+Iteration 44/154
+Iteration 45/154
+Iteration 46/154
+Iteration 47/154
+Iteration 48/154
+Iteration 49/154
+Iteration 50/154
+Iteration 51/154
+Iteration 52/154
+Iteration 53/154
+Iteration 54/154
+Iteration 55/154
+Iteration 56/154
+Iteration 57/154
+Iteration 58/154
+Iteration 59/154
+Iteration 60/154
+Iteration 61/154
+Iteration 62/154
+Iteration 63/154
+Iteration 64/154
+Iteration 65/154
+Iteration 66/154
+Iteration 67/154
+Iteration 68/154
+Iteration 69/154
+Iteration 70/154
+Iteration 71/154
+Iteration 72/154
+Iteration 73/154
+Iteration 74/154
+Iteration 75/154
+Iteration 76/154
+Iteration 77/154
+Iteration 78/154
+Iteration 79/154
+Iteration 80/154
+Iteration 81/154
+Iteration 82/154
+Iteration 83/154
+Iteration 84/154
+Iteration 85/154
+Iteration 86/154
+Iteration 87/154
+Iteration 88/154
+Iteration 89/154
+Iteration 90/154
+Iteration 91/154
+Iteration 92/154
+Iteration 93/154
+Iteration 94/154
+Iteration 95/154
+Iteration 96/154
+Iteration 97/154
+Iteration 98/154
+Iteration 99/154
+Iteration 100/154
+Iteration 101/154
+Iteration 102/154
+Iteration 103/154
+Iteration 104/154
+Iteration 105/154
+Iteration 106/154
+Iteration 107/154
+Iteration 108/154
+Iteration 109/154
+Iteration 110/154
+Iteration 111/154
+Iteration 112/154
+Iteration 113/154
+Iteration 114/154
+Iteration 115/154
+Iteration 116/154
+Iteration 117/154
+Iteration 118/154
+Iteration 119/154
+Iteration 120/154
+Iteration 121/154
+Iteration 122/154
+Iteration 123/154
+Iteration 124/154
+Iteration 125/154
+Iteration 126/154
+Iteration 127/154
+Iteration 128/154
+Iteration 129/154
+Iteration 130/154
+Iteration 131/154
+Iteration 132/154
+Iteration 133/154
+Iteration 134/154
+Iteration 135/154
+Iteration 136/154
+Iteration 137/154
+Iteration 138/154
+Iteration 139/154
+Iteration 140/154
+Iteration 141/154
+Iteration 142/154
+Iteration 143/154
+Iteration 144/154
+Iteration 145/154
+Iteration 146/154
+Iteration 147/154
+Iteration 148/154
+Iteration 149/154
+Iteration 150/154
+Iteration 151/154
+Iteration 152/154
+Iteration 153/154
+Iteration 154/154
+shrink
+Iteration 1/86
+Iteration 2/86
+Iteration 3/86
+Iteration 4/86
+Iteration 5/86
+Iteration 6/86
+Iteration 7/86
+Iteration 8/86
+Iteration 9/86
+Iteration 10/86
+Iteration 11/86
+Iteration 12/86
+Iteration 13/86
+Iteration 14/86
+Iteration 15/86
+Iteration 16/86
+Iteration 17/86
+Iteration 18/86
+Iteration 19/86
+Iteration 20/86
+Iteration 21/86
+Iteration 22/86
+Iteration 23/86
+Iteration 24/86
+Iteration 25/86
+Iteration 26/86
+Iteration 27/86
+Iteration 28/86
+Iteration 29/86
+Iteration 30/86
+Iteration 31/86
+Iteration 32/86
+Iteration 33/86
+Iteration 34/86
+Iteration 35/86
+Iteration 36/86
+Iteration 37/86
+Iteration 38/86
+Iteration 39/86
+Iteration 40/86
+Iteration 41/86
+Iteration 42/86
+Iteration 43/86
+Iteration 44/86
+Iteration 45/86
+Iteration 46/86
+Iteration 47/86
+Iteration 48/86
+Iteration 49/86
+Iteration 50/86
+Iteration 51/86
+Iteration 52/86
+Iteration 53/86
+Iteration 54/86
+Iteration 55/86
+Iteration 56/86
+Iteration 57/86
+Iteration 58/86
+Iteration 59/86
+Iteration 60/86
+Iteration 61/86
+Iteration 62/86
+Iteration 63/86
+Iteration 64/86
+Iteration 65/86
+Iteration 66/86
+Iteration 67/86
+Iteration 68/86
+Iteration 69/86
+Iteration 70/86
+Iteration 71/86
+Iteration 72/86
+Iteration 73/86
+Iteration 74/86
+Iteration 75/86
+Iteration 76/86
+Iteration 77/86
+Iteration 78/86
+Iteration 79/86
+Iteration 80/86
+Iteration 81/86
+Iteration 82/86
+Iteration 83/86
+Iteration 84/86
+Iteration 85/86
+Iteration 86/86
+264.049383 seconds (853.78 M allocations: 53.705 GiB, 12.12% gc time)
+shrink
+Iteration 1/77
+Iteration 2/77
+Iteration 3/77
+Iteration 4/77
+Iteration 5/77
+Iteration 6/77
+Iteration 7/77
+Iteration 8/77
+Iteration 9/77
+Iteration 10/77
+Iteration 11/77
+Iteration 12/77
+Iteration 13/77
+Iteration 14/77
+Iteration 15/77
+Iteration 16/77
+Iteration 17/77
+Iteration 18/77
+Iteration 19/77
+Iteration 20/77
+Iteration 21/77
+Iteration 22/77
+Iteration 23/77
+Iteration 24/77
+Iteration 25/77
+Iteration 26/77
+Iteration 27/77
+Iteration 28/77
+Iteration 29/77
+Iteration 30/77
+Iteration 31/77
+Iteration 32/77
+Iteration 33/77
+Iteration 34/77
+Iteration 35/77
+Iteration 36/77
+Iteration 37/77
+Iteration 38/77
+Iteration 39/77
+Iteration 40/77
+Iteration 41/77
+Iteration 42/77
+Iteration 43/77
+Iteration 44/77
+Iteration 45/77
+Iteration 46/77
+Iteration 47/77
+Iteration 48/77
+Iteration 49/77
+Iteration 50/77
+Iteration 51/77
+Iteration 52/77
+Iteration 53/77
+Iteration 54/77
+Iteration 55/77
+Iteration 56/77
+Iteration 57/77
+Iteration 58/77
+Iteration 59/77
+Iteration 60/77
+Iteration 61/77
+Iteration 62/77
+Iteration 63/77
+Iteration 64/77
+Iteration 65/77
+Iteration 66/77
+Iteration 67/77
+Iteration 68/77
+Iteration 69/77
+Iteration 70/77
+Iteration 71/77
+Iteration 72/77
+Iteration 73/77
+Iteration 74/77
+Iteration 75/77
+Iteration 76/77
+Iteration 77/77
+shrink
+Iteration 1/43
+Iteration 2/43
+Iteration 3/43
+Iteration 4/43
+Iteration 5/43
+Iteration 6/43
+Iteration 7/43
+Iteration 8/43
+Iteration 9/43
+Iteration 10/43
+Iteration 11/43
+Iteration 12/43
+Iteration 13/43
+Iteration 14/43
+Iteration 15/43
+Iteration 16/43
+Iteration 17/43
+Iteration 18/43
+Iteration 19/43
+Iteration 20/43
+2018-12-17 13:36:45.115381: F tensorflow/core/common_runtime/bfc_allocator.cc:458] Check failed: c->in_use() && (c->bin_num == kInvalidBinNum) 
+
+signal (6): Aborted
+in expression starting at no file:0
+Allocations: 4033886826 (Pool: 4024554783; Big: 9332043); GC: 31881
+
+Process julia aborted (core dumped)
