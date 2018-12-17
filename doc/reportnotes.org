@@ -6,3 +6,9 @@ address this, we change the energy function by introducing a semantic
 segmentation masking layer (produced my MaskRCNN) that scales the energies of
 the gradients for pixels belonging to higher order features. This can include
 people, animals, or common objects. Results are hopefully good.
+
+
+** Future ideas:
+   Get initial masks and shift them after each seam carve in order to not need a
+   recomputation of the masks. can work in gradient space and reconstruct images
+   with poisson solver like said in original paper

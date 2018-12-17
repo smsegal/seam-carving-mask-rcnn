@@ -1,8 +1,8 @@
 using Images, LinearAlgebra, FileIO, Statistics, PyCall
-ENV["PYTHON"] = "pythonw"
-pushfirst!(PyVector(pyimport("sys")["path"]), "")
-@pyimport imageMasks
-@pyimport numpy as np
+# ENV["PYTHON"] = "pythonw"
+# pushfirst!(PyVector(pyimport("sys")["path"]), "")
+# @pyimport imageMasks
+# @pyimport numpy as np
 
 function resize(img, newSize::NTuple{2,Int})
     carved = img
@@ -78,7 +78,7 @@ function energy(img)
     return maskedregions .* magnitude
 end
 
-maskgen = imageMasks.MaskGenerator()
+# maskgen = imageMasks.MaskGenerator()
 # function stub
 function masks(img)
     pyimg = channelview(img)
