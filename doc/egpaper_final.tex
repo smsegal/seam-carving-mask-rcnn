@@ -1,0 +1,594 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{amssymb}
+
+% Include other packages here, before hyperref.
+
+\graphicspath{{../assets/}}
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+\setcounter{page}{1}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Content-Aware Image Resizing with Seam Carving and ResNets}
+
+\author{Shane Segal\\
+  York University\\
+  Toronto ON, Canada\\
+  {\tt\small smsegal@eecs.yorku.ca}
+}
+
+\maketitle
+%\thispagestyle{empty}
+
+%%%%%%%%% ABSTRACT
+\begin{abstract}
+  Image resizing that respects the semantic content of images is an improvement
+  on prior methods of Content Aware Image resizing that don't integrate
+  higher-level knowledge of the image into their resizing processes. We present
+  an algorithm that combines the capabilities of modern, state of the art deep
+  learning techniques with the classical Seam Carving algorithm
+  \cite{seamcarve}. By combining the ability of \cite{seamcarve} and the
+  advanced image segmentation techniques of Mask~{R-CNN} \cite{maskrcnnpaper},
+  semantically irrelevant information is removed from the image, while regions
+  featuring subjectively important content is retained. In addition, the image
+  enlarging capabilities of the original seam carving algorithm are enhanced by
+  avoiding distortions of higher level features when they are present in the
+  image.
+\end{abstract}
+
+%%%%%%%%% BODY TEXT
+\section{Introduction}
+
+Image resizing has historically been done by cropping or scaling images, to
+shrink or enlarge them respectively. The introduction of the seam-carving
+operator by \cite{seamcarve} allowed for the easy resizing of images while
+preserving spots of the image according to some energy function. The original
+paper used the gradient magnitude of the image as the energy function in order
+to eliminate areas of low change, which is a reasonable proxy for
+``uninteresting'' parts of an image.
+
+Content-Aware image resizing, also referred to as image retargetting, is an
+interesting problem as it provides quick and immediate feedback regarding the
+success of an approach. In addition, it is one application of a larger problem
+of exploring what kinds of content and patterns are visually arresting to the
+human visual system. The heuristic to determine human interest in the original
+paper is both simple and effective for many classes of image.
+
+Seam Carving works quite well when applied to landscapes or other images where
+there are large patches of low and high variation. However, when applied to
+images with features that people are particularly attentive to (such as faces)
+the results can be noticeably bad and distorted. See Figure
+\ref{fig:laughcomparison} for a comparison between our method and the original seam
+carving algorithm (reimplemented for this paper).
+
+By combining the ability to selectively remove ``uninteresting'' parts of the
+image with the ability to detect high level features at an accuracy that can't
+be matched by a gradient based approach, we demonstrate adaptive image resizing
+that preserves faces and other high level content in a subjectively more
+pleasing and natural way.
+
+\begin{figure}[t]
+  \centering
+  \subfloat[Original]{{\includegraphics[width=0.8\linewidth]{people-laughing}}}
+  \qquad
+  \subfloat[Seam-Carving]{{\includegraphics[width=0.8\linewidth]{badlaughcarve}}}
+  \qquad
+  \subfloat[Our Method]{{\includegraphics[width=0.8\linewidth]{smallfancylaughbest}}}
+  \caption{Comparison between the original method and our own. The bottom two
+    images are 80\% of the size of the original image.}
+  \label{fig:laughcomparison}
+\end{figure}
+
+%-------------------------------------------------------------------------
+\section{Prior Work}
+
+Seam Carving \cite{seamcarve} works by selecting seams of the lowest energy in
+an image, and continuously removing them until a target size is reached. A seam
+is a connected path leading from one end to the other of an image in a
+particular dimension. Let $\boldsymbol{I}$ be an $n \times m$ image. Using the notation of
+the original paper, a vertical seam is:
+
+\begin{equation}
+  \boldsymbol{s^x} = \{s_i^x\}_{i=1}^n = \{(x(i),i)\}_{i=1}^n, \text{s.t } \forall{i}, |x(i) - x(i-1)| \leq 1
+\end{equation}
+
+where $x$ is a mapping of: $[1,...,n] \rightarrow [1,...,m]$. This is a
+connected path of pixels running from top to bottom of the image, with exactly
+one mapping between a row $x(i)$ and the horizontal location of the seam at that
+row. In the same way, a horizontal path consists of a mapping $y: [1,...,m]
+\rightarrow [1,...,n]$, and:
+
+\begin{equation}
+  \boldsymbol{s^y} = \{s_j^y\}_{j=1}^n = \{(y(j),j)\}_{j=1}^n, \text{s.t } \forall{j}, |y(j) - y(j-1)| \leq 1
+\end{equation}
+
+The pixels of the seam are therefore:
+\begin{equation}
+  \boldsymbol{I}_s = \{\boldsymbol{I}(s_i)\}_{i=1}^n = \{\boldsymbol{I}(x(i),i)\}_{i=1}^n
+\end{equation}
+
+Since seams are always of $1 \times n$ or $m \times 1$, their removal from an
+image will cause a reduction of exactly one pixel in either the width or height
+of the target image.
+
+With this idea, the optimal seam to remove from an image will be the one that
+minimizes the cost, where the cost is defined as the sum of the energy of the
+seam, where the energy can be an arbitrary function. The optimal seam $s^*$ is
+the one that minimizes this energy over the range of possible seams for a given
+dimension of the image:
+\begin{equation}
+  s^* = \min_s(E(s)) = \min_s \sum_{i=1}^n{e(\boldsymbol{I}(s_i))}
+\end{equation}
+
+The optimal seam can be found through a bottom-up dynamic programming approach,
+where we can create a scoring matrix $M$ by computing the minimum energy for all
+possible connected seams at a point by:
+
+\begin{equation*}
+  M(i, j) = e(i, j) + \min(M(i - 1, j - 1),M(i - 1, j),M(i - 1, j+1))
+\end{equation}
+
+After the scoring matrix is constructed, we can find the optimal seam by tracing
+up from the bottom and picking the minimum value of the three connected elements
+on the row above. The process is identical for horizontal seams, using the
+transpose of the original image.
+
+After the seam is found, it can be removed from the image and the whole process
+can be repeated until the desired image size in the specified dimension
+$n' \leq n$ is reached. A simplification from the original paper is made here.
+The authors propose a scheme for finding the optimal removal order of seams, but
+the qualitative difference in the modified image was negligible. A simpler
+approach was taken by simply applying horizontal seam removal to an image, and
+then transposing the resulting image and performing the process again, until the
+desired size was reached in each dimension.
+
+To enlarge an image from $n \times m$ to $n' \times m'$, it is not sufficient to
+simply add the optimal seam repeatedly, as this will most often insert the same
+seam repeatedly, causing obvious banding effects as seen in Figure
+\ref{fig:seaminsertion}.
+
+\begin{figure}[t]
+  \begin{center}
+    \subfloat[Optimal Seam Insertion]{{\includegraphics[width=0.8\linewidth]{badseaminsertion}}}
+    \qquad
+    \subfloat[Seams Inserted in order of Removal]{{\includegraphics[width=0.8\linewidth]{goodseaminsertion}}}
+    \caption{The result of inserting the optimal seam repeatedly and in order of
+      removal. (Figures taken from \cite{seamcarve})}
+    \label{fig:seaminsertion}
+  \end{center}
+\end{figure}
+
+To avoid this issue, it suffices to first shrink the image by $(n' - n, m' - m)$
+and then save the seams in the order of removal. After the image is fully
+resized, you then insert the removed seams back into the original image.
+
+The energy function is generally the gradient magnitude of the image,
+as the original authors experimented with different functions but all provided
+qualitatively similar results.
+
+\subsection{Limitations of Prior Work}
+
+The Seam Carving method described above works very well for images with clearly
+seperated regions of high and low energy, and especially those without faces or
+other features that human minds are particularly sensitive towards. An example
+of a good image to perform seam carving on is seen in Figure
+\ref{fig:goodcarve}.
+
+\begin{figure}[t]
+  \centering
+  \subfloat[Original Image]{{\includegraphics[width=0.8\linewidth]{ryerson}}}
+  \qquad
+  \subfloat[Shrunk by 20\%]{{\includegraphics[width=0.8\linewidth]{ryesmall}}}
+  \qquad
+  \subfloat[Grown by 20\%]{{\includegraphics[width=0.8\linewidth]{ryelarge}}}
+  \caption{An image with good results shown with classical seam carving.}
+  \label{fig:goodcarve}
+\end{figure}
+
+However, when seam carving is applied to images with faces or other high level
+semantic features, the results are often wildly distorted. This is because the
+idea of gradient magnitude being a perfect measure of human attention in an
+image is innacurate at best. An example of this can be seen in Figure
+\ref{fig:badcarving}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{badlaughcarve}
+  \caption{Seam Carving gone wrong.}
+  \label{fig:badcarving}
+\end{figure}
+
+Other limitations include only being able to enlarge an image by a factor of 2
+as seams have to be removed first before they can be added back to the original.
+
+\subsection{Addressing the Limitations}
+This paper seeks to address the inability to resize images containing human
+images and other recognizable object categories. By utilizing the neural network
+defined in \cite{maskrcnnpaper, matterport_maskrcnn_2017}, the high level
+feature knowledge embedded in the pretrained network weights allow our algorithm
+to preserve the semantic content of the images being resized. This not only
+allows for better shrinking of images, it also allows for better enlarging by
+the same strategy. We enhance the energy function by introducing the masks
+generated by Mask R-CNN as a measure of greater importance to the areas
+belonging to high level features.
+
+%-------------------------------------------------------------------------
+\subsection{Datasets}
+A selection of images have been taken from Flickr, which contain a Creative
+Commons fair use license. These images have been selected for evaluation as they
+present the kinds of features the original seam carving algorithm did not
+perform well on.
+
+\subsection{System Description}
+The seam carving system described in the original paper was entirely
+reimplemented in the Julia programming language. This language was chosen for
+its greater ease of use and speed over Matlab, and chosen over Python for it's
+increased speed. The metaprogramming and extensive linear algebra and image
+filtering features of Julia made several aspects of the reimplementation easier
+and faster than an equivalent Matlab or Python implementation. The high level
+image filtering features of Julia used were only the image gradient calculation.
+Otherwise, the seam-carving portion of the algorithm has been entirely written
+based off of \cite{seamcarve}.
+
+Mask-RCNN is used to calculate the mask overlays of the high level objects in
+the image. As there is a separate overlay for each specific mask, these are
+summed and normalized into a single image with pixels inside the mask being $\alpha$
+and those outside being 1. The mask sum is computed by:
+
+\begin{equation}
+  \boldsymbol{R} = \alpha \sum_{i=1}^N{R_i}+ \boldsymbol{1}
+\end{equation}
+
+where $\boldsymbol{1}$ is a matrix of ones the same size as $R_i$, and $\alpha$
+is a hyperparameter chosen experimentally to improve the preservation of
+semantic content in the image. Unless otherwise stated, $\alpha = 20$ for images
+using our algorithm.
+
+We then element-wise multiply (sometimes known as the ``Hadamard Product''
+denoted by $\oplus$) our gradient magnitude by $\boldsymbol{R}$ to produce our
+energy matrix:
+
+\begin{equation}
+  E(\boldsymbol{I}) = |\frac{\delta \boldsymbol{I}}{\delta x}^2 + \frac{\delta \boldsymbol{I}}{\delta y}^2| \oplus \boldsymbol{R}
+\end{equation}
+
+After our modified energy matrix is produced, the classical seam-carving
+algorithm is followed.
+
+
+\subsection{Blind review}
+
+Many authors misunderstand the concept of anonymizing for blind
+review.  Blind review does not mean that one must remove
+citations to one's own work---in fact it is often impossible to
+review a paper unless the previous citations are known and
+available.
+
+Blind review means that you do not use the words ``my'' or ``our''
+when citing previous work.  That is all.  (But see below for
+techreports.)
+
+Saying ``this builds on the work of Lucy Smith [1]'' does not say
+that you are Lucy Smith; it says that you are building on her
+work.  If you are Smith and Jones, do not say ``as we show in
+[7]'', say ``as Smith and Jones show in [7]'' and at the end of the
+paper, include reference 7 as you would any other cited work.
+
+An example of a bad paper just asking to be rejected:
+\begin{quote}
+\begin{center}
+    An analysis of the frobnicatable foo filter.
+\end{center}
+
+   In this paper we present a performance analysis of our
+   previous paper [1], and show it to be inferior to all
+   previously known methods.  Why the previous paper was
+   accepted without this analysis is beyond me.
+
+   [1] Removed for blind review
+\end{quote}
+
+
+An example of an acceptable paper:
+
+\begin{quote}
+\begin{center}
+     An analysis of the frobnicatable foo filter.
+\end{center}
+
+   In this paper we present a performance analysis of the
+   paper of Smith \etal [1], and show it to be inferior to
+   all previously known methods.  Why the previous paper
+   was accepted without this analysis is beyond me.
+
+   [1] Smith, L and Jones, C. ``The frobnicatable foo
+   filter, a fundamental contribution to human knowledge''.
+   Nature 381(12), 1-213.
+\end{quote}
+
+If you are making a submission to another conference at the same time,
+which covers similar or overlapping material, you may need to refer to that
+submission in order to explain the differences, just as you would if you
+had previously published related work.  In such cases, include the
+anonymized parallel submission~\cite{Authors14} as additional material and
+cite it as
+\begin{quote}
+[1] Authors. ``The frobnicatable foo filter'', F\&G 2014 Submission ID 324,
+Supplied as additional material {\tt fg324.pdf}.
+\end{quote}
+
+Finally, you may feel you need to tell the reader that more details can be
+found elsewhere, and refer them to a technical report.  For conference
+submissions, the paper must stand on its own, and not {\em require} the
+reviewer to go to a techreport for further details.  Thus, you may say in
+the body of the paper ``further details may be found
+in~\cite{Authors14b}''.  Then submit the techreport as additional material.
+Again, you may not assume the reviewers will read this material.
+
+Sometimes your paper is about a problem which you tested using a tool which
+is widely known to be restricted to a single institution.  For example,
+let's say it's 1969, you have solved a key problem on the Apollo lander,
+and you believe that the CVPR70 audience would like to hear about your
+solution.  The work is a development of your celebrated 1968 paper entitled
+``Zero-g frobnication: How being the only people in the world with access to
+the Apollo lander source code makes us a wow at parties'', by Zeus \etal.
+
+You can handle this paper like any other.  Don't write ``We show how to
+improve our previous work [Anonymous, 1968].  This time we tested the
+algorithm on a lunar lander [name of lander removed for blind review]''.
+That would be silly, and would immediately identify the authors. Instead
+write the following:
+\begin{quotation}
+\noindent
+   We describe a system for zero-g frobnication.  This
+   system is new because it handles the following cases:
+   A, B.  Previous systems [Zeus et al. 1968] didn't
+   handle case B properly.  Ours handles it by including
+   a foo term in the bar integral.
+
+   ...
+
+   The proposed system was integrated with the Apollo
+   lunar lander, and went all the way to the moon, don't
+   you know.  It displayed the following behaviours
+   which show how well we solved cases A and B: ...
+\end{quotation}
+As you can see, the above text follows standard scientific convention,
+reads better than the first version, and does not explicitly name you as
+the authors.  A reviewer might think it likely that the new paper was
+written by Zeus \etal, but cannot make any decision based on that guess.
+He or she would have to be sure that no other authors could have been
+contracted to solve problem B.
+\medskip
+
+\noindent
+FAQ\medskip\\
+{\bf Q:} Are acknowledgements OK?\kk\
+{\bf A:} No.  Leave them for the final copy.\medskip\\
+{\bf Q:} How do I cite my results reported in open challenges?
+{\bf A:} To conform with the double blind review policy, you can report results of other challenge participants together with your results in your paper. For your results, however, you should not identify yourself and should not mention your participation in the challenge. Instead present your results referring to the method proposed in your paper and draw conclusions based on the experimental comparison to other results.\medskip\\
+
+
+
+\begin{figure}[t]
+\begin{center}
+\fbox{\rule{0pt}{2in} \rule{0.9\linewidth}{0pt}}
+   %\includegraphics[width=0.8\linewidth]{egfigure.eps}
+\end{center}
+   \caption{Example of caption.  It is set in Roman so that mathematics
+   (always set in Roman: $B \sin A = A \sin B$) may be included without an
+   ugly clash.}
+\label{fig:long}
+\label{fig:onecol}
+\end{figure}
+
+\subsection{Miscellaneous}
+
+\noindent
+Compare the following:\\
+\begin{tabular}{ll}
+ \verb'$conf_a$' &  $conf_a$ \\
+ \verb'$\mathit{conf}_a$' & $\mathit{conf}_a$
+\end{tabular}\\
+See The \TeX book, p165.
+
+The space after \eg, meaning ``for example'', should not be a
+sentence-ending space. So \eg is correct, {\em e.g.} is not.  The provided
+\verb'\eg' macro takes care of this.
+
+When citing a multi-author paper, you may save space by using ``et alia'',
+shortened to ``\etal'' (not ``{\em et.\ al.}'' as ``{\em et}'' is a complete word.)
+However, use it only when there are three or more authors.  Thus, the
+following is correct: ``
+   Frobnication has been trendy lately.
+   It was introduced by Alpher~\cite{Alpher02}, and subsequently developed by
+   Alpher and Fotheringham-Smythe~\cite{Alpher03}, and Alpher \etal~\cite{Alpher04}.''
+
+This is incorrect: ``... subsequently developed by Alpher \etal~\cite{Alpher03} ...''
+because reference~\cite{Alpher03} has just two authors.  If you use the
+\verb'\etal' macro provided, then you need not worry about double periods
+when used at the end of a sentence as in Alpher \etal.
+
+For this citation style, keep multiple citations in numerical (not
+chronological) order, so prefer \cite{Alpher03,Alpher02,Authors14} to
+\cite{Alpher02,Alpher03,Authors14}.
+
+
+\begin{figure*}
+\begin{center}
+\fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
+\end{center}
+   \caption{Example of a short caption, which should be centered.}
+\label{fig:short}
+\end{figure*}
+
+%------------------------------------------------------------------------
+\section{Formatting your paper}
+
+All text must be in a two-column format. The total allowable width of the
+text area is $6\frac78$ inches (17.5 cm) wide by $8\frac78$ inches (22.54
+cm) high. Columns are to be $3\frac14$ inches (8.25 cm) wide, with a
+$\frac{5}{16}$ inch (0.8 cm) space between them. The main title (on the
+first page) should begin 1.0 inch (2.54 cm) from the top edge of the
+page. The second and following pages should begin 1.0 inch (2.54 cm) from
+the top edge. On all pages, the bottom margin should be 1-1/8 inches (2.86
+cm) from the bottom edge of the page for $8.5 \times 11$-inch paper; for A4
+paper, approximately 1-5/8 inches (4.13 cm) from the bottom edge of the
+page.
+
+%-------------------------------------------------------------------------
+\subsection{Margins and page numbering}
+
+All printed material, including text, illustrations, and charts, must be kept
+within a print area 6-7/8 inches (17.5 cm) wide by 8-7/8 inches (22.54 cm)
+high.
+Page numbers should be in footer with page numbers, centered and .75
+inches from the bottom of the page and make it start at the correct page
+number rather than the 4321 in the example.  To do this fine the line (around
+line 23)
+\begin{verbatim}
+%\ifcvprfinal\pagestyle{empty}\fi
+\setcounter{page}{4321}
+\end{verbatim}
+where the number 4321 is your assigned starting page.
+
+Make sure the first page is numbered by commenting out the first page being
+empty on line 46
+\begin{verbatim}
+%\thispagestyle{empty}
+\end{verbatim}
+
+
+%-------------------------------------------------------------------------
+\subsection{Type-style and fonts}
+
+Wherever Times is specified, Times Roman may also be used. If neither is
+available on your word processor, please use the font closest in
+appearance to Times to which you have access.
+
+MAIN TITLE. Center the title 1-3/8 inches (3.49 cm) from the top edge of
+the first page. The title should be in Times 14-point, boldface type.
+Capitalize the first letter of nouns, pronouns, verbs, adjectives, and
+adverbs; do not capitalize articles, coordinate conjunctions, or
+prepositions (unless the title begins with such a word). Leave two blank
+lines after the title.
+
+AUTHOR NAME(s) and AFFILIATION(s) are to be centered beneath the title
+and printed in Times 12-point, non-boldface type. This information is to
+be followed by two blank lines.
+
+The ABSTRACT and MAIN TEXT are to be in a two-column format.
+
+MAIN TEXT. Type main text in 10-point Times, single-spaced. Do NOT use
+double-spacing. All paragraphs should be indented 1 pica (approx. 1/6
+inch or 0.422 cm). Make sure your text is fully justified---that is,
+flush left and flush right. Please do not place any additional blank
+lines between paragraphs.
+
+Figure and table captions should be 9-point Roman type as in
+Figures~\ref{fig:onecol} and~\ref{fig:short}.  Short captions should be centred.
+
+\noindent Callouts should be 9-point Helvetica, non-boldface type.
+Initially capitalize only the first word of section titles and first-,
+second-, and third-order headings.
+
+FIRST-ORDER HEADINGS. (For example, {\large \bf 1. Introduction})
+should be Times 12-point boldface, initially capitalized, flush left,
+with one blank line before, and one blank line after.
+
+SECOND-ORDER HEADINGS. (For example, { \bf 1.1. Database elements})
+should be Times 11-point boldface, initially capitalized, flush left,
+with one blank line before, and one after. If you require a third-order
+heading (we discourage it), use 10-point Times, boldface, initially
+capitalized, flush left, preceded by one blank line, followed by a period
+and your text on the same line.
+
+%-------------------------------------------------------------------------
+\subsection{Footnotes}
+
+Please use footnotes\footnote {This is what a footnote looks like.  It
+often distracts the reader from the main flow of the argument.} sparingly.
+Indeed, try to avoid footnotes altogether and include necessary peripheral
+observations in
+the text (within parentheses, if you prefer, as in this sentence).  If you
+wish to use a footnote, place it at the bottom of the column on the page on
+which it is referenced. Use Times 8-point type, single-spaced.
+
+
+%-------------------------------------------------------------------------
+\subsection{References}
+
+List and number all bibliographical references in 9-point Times,
+single-spaced, at the end of your paper. When referenced in the text,
+enclose the citation number in square brackets, for
+example~\cite{Authors14}.  Where appropriate, include the name(s) of
+editors of referenced books.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+Method & Frobnability \\
+\hline\hline
+Theirs & Frumpy \\
+Yours & Frobbly \\
+Ours & Makes one's heart Frob\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Results.   Ours is better.}
+\end{table}
+
+%-------------------------------------------------------------------------
+\subsection{Illustrations, graphs, and photographs}
+
+All graphics should be centered.  Please ensure that any point you wish to
+make is resolvable in a printed copy of the paper.  Resize fonts in figures
+to match the font in the body text, and choose line widths which render
+effectively in print.  Many readers (and reviewers), even of an electronic
+copy, will choose to print your paper in order to read it.  You cannot
+insist that they do otherwise, and therefore must not assume that they can
+zoom in to see tiny details on a graphic.
+
+
+%-------------------------------------------------------------------------
+\subsection{Color}
+
+Please refer to the author guidelines on the CVPR 2018 web page for a discussion
+of the use of color in your document.
+
+%------------------------------------------------------------------------
+\section{Final copy}
+
+You must include your signed IEEE copyright release form when you submit
+your finished paper. We MUST have this form before your paper can be
+published in the proceedings.
+
+Please direct any questions to the production editor in charge of these
+proceedings at the IEEE Computer Society Press: Phone (714) 821-8380, or
+Fax (714) 761-1784.
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{egbib}
+}
+
+\end{document}
