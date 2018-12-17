@@ -1,19 +1,26 @@
 using Images, LinearAlgebra, FileIO, Statistics, PyCall
-ENV["PYTHON"] = "pythonw"
+ENV["PYTHON"] = "python"
 pushfirst!(PyVector(pyimport("sys")["path"]), "")
 @pyimport imageMasks
 @pyimport numpy as np
 
-function resize(img, newSize::NTuple{2,Int})
+function resize(img, newSize::NTuple{2,Int}; fancy=true)
     carved = img
+    if fancy
+        shrinkDimLocal = (im, dm) -> shrinkDim(im, dm, energy)
+    else
+        shrinkDimLocal = (im, dm) -> shrinkDim(im, dm, plainEnergy)
+    end
+    growDimLocal = (im, dm) -> growDim(im, dm, fancy)
+
     for diff in reverse(size(img) .- newSize)
         diffMag = abs(diff)
         if diff > 0 #shrink along dim
             println("shrink")
-            carved, _ = shrinkDim(carved, diffMag)
+            carved, _ = shrinkDimLocal(carved, diffMag)
         elseif diff < 0 #grow along dim
             println("grow")
-            carved = growDim(carved, diffMag)
+            carved = growDimLocal(carved, diffMag)
         end
         carved = carved'
     end
@@ -25,8 +32,14 @@ function contentAmplification(img, factor)
     return resize(larger, size(img))
 end
 
-function growDim(img, diff)
-    _, seams = shrinkDim(img, diff)
+function growDim(img, diff, fancy)
+    if fancy
+        shrinkDimLocal = (im, dm) -> shrinkDim(im, dm, energy)
+    else
+        shrinkDimLocal = (im, dm) -> shrinkDim(im, dm, plainEnergy)
+    end
+
+    _, seams = shrinkDimLocal(img, diff)
     currentImage = img
     for i ∈ 1:diff
         println(string("Growth Iteration ", i, "/", diff))
@@ -37,16 +50,16 @@ function growDim(img, diff)
     return currentImage
 end
 
-function seamFromImage(img)
-    (generateSeam ∘ score ∘ padsides ∘ energy)(img)
+function seamFromImage(img, energyFunc)
+    (generateSeam ∘ score ∘ padsides ∘ energyFunc)(img)
 end
 
-function shrinkDim(img, diff)
+function shrinkDim(img, diff, energyType)
     currentImage = img
     seams = fill(Vector{Int}(undef, size(img,1)), diff)
     for i ∈ 1:diff
         println(string("Iteration ", i, "/", diff))
-        seams[i] = seamFromImage(currentImage)
+        seams[i] = seamFromImage(currentImage,energyType)
         shrunkImage = zeros(eltype(currentImage), size(currentImage) .- (0,1))
         removeSeam!(shrunkImage, currentImage, seams[i])
         currentImage = shrunkImage
@@ -67,7 +80,9 @@ function addSeam!(grownImage, prevImage, seam)
 end
 
 getThird((_,_,third)) = third
-# energy(img) = (getThird ∘ imedge)(img, Kernel.ando3)
+function plainEnergy(img)
+    (getThird ∘ imedge)(img, Kernel.ando3)
+end
 function energy(img)
     magnitude = (getThird ∘ imedge)(img, Kernel.ando3)
     #=
@@ -82,10 +97,9 @@ maskgen = imageMasks.MaskGenerator()
 # function stub
 function masks(img)
     pyimg = channelview(img)
-    pyimg = channelview(img)
     pyimg = permutedims(pyimg,[2,3,1])
     pyimg = round.(Int, 255 .* np.array(pyimg))
-    immasks = mg[:computeMasks](pyimg)
+    immasks = maskgen[:computeMasks](pyimg)
     intmasks = mapslices(immasks, dims=[3]) do mask
         map(mp -> mp ? 1 : 0, mask)
     end
@@ -93,7 +107,7 @@ function masks(img)
     for i ∈ 1:size(intmasks,3)
         allmasks .+= intmasks[:,:,i]
     end
-    return (allmasks .+ 1) .* 2
+    return (allmasks .* 20) .+ 1
 end
 
 function score(energy)
