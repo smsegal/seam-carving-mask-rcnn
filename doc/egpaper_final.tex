@@ -316,25 +316,41 @@ a scale of $[0.8,...,1.2]$ on the same image, we see that the execution time is 
 \end{figure}
 
 
-\begin{table}[htbp]
+\begin{table}
   \centering
   \begin{tabular}{rr}
     Scale & Execution Time (seconds)\\
     \hline
-    0.5 & 28.008397\\
-    0.6 & 21.751526\\
-    0.7 & 18.539442\\
-    0.8 & 14.389925\\
-    0.9 & 8.604313\\
-    1.0 & 0.002406\\
-    1.1 & 10.512507\\
-    1.2 & 19.771803\\
-    1.3 & 27.629700\\
-    1.4 & 35.464424\\
-    1.5 & 41.666718\\
+    0.5 & 28.008\\
+    0.6 & 21.751\\
+    0.7 & 18.539\\
+    0.8 & 14.389\\
+    0.9 & 8.6043\\
+    1.0 & 0.0024\\
+    1.1 & 10.512\\
+    1.2 & 19.771\\
+    1.3 & 27.629\\
+    1.4 & 35.464\\
+    1.5 & 41.666\\
   \end{tabular}
-  \caption{Execution time and scale factors for resizing an image without RNN}
+  \caption{Execution time and scale factors for resizing an image without Mask-RCNN}
   \label{table:exectimenornn}
+\end{table}
+
+
+\begin{table}
+  \centering
+  \begin{tabular}{rr}
+    Scale & Execution Time (Seconds)\\
+    \hline
+    0.8 & 264.049\\
+    0.9 & 149.573\\
+    1.0 & 0.09335\\
+    1.1 & 146.829\\
+    1.2 & 289.340\\
+  \end{tabular}
+  \caption{Execution Time and scale factors for resizing an image with Mask-RCNN}
+  \label{table:exectimernn}
 \end{table}
 
 \section{Conclusion}
@@ -374,151 +390,41 @@ such as implementing a neighbour-based approach to calculating seams that was
 capable of real-time computation back in 2009 \cite{fastcarve}. However, as
 there is no discrete phase of energy computation, it is unclear how to adapt our
 system to this faster method.
+
+In addition, it can be seen that if the masking of objects in our images was
+exact, there would be no distortion around the semantic content whatsoever.
+Knowing this, it seems that as the state of the art of image
+segmentation/masking improves, so to will further implementations of our
+algorithm.
+
 %------------------------------------------------------------------------
 \section{Additional Images}
 
-All text must be in a two-column format. The total allowable width of the
-text area is $6\frac78$ inches (17.5 cm) wide by $8\frac78$ inches (22.54
-cm) high. Columns are to be $3\frac14$ inches (8.25 cm) wide, with a
-$\frac{5}{16}$ inch (0.8 cm) space between them. The main title (on the
-first page) should begin 1.0 inch (2.54 cm) from the top edge of the
-page. The second and following pages should begin 1.0 inch (2.54 cm) from
-the top edge. On all pages, the bottom margin should be 1-1/8 inches (2.86
-cm) from the bottom edge of the page for $8.5 \times 11$-inch paper; for A4
-paper, approximately 1-5/8 inches (4.13 cm) from the bottom edge of the
-page.
+\begin{figure}
+  \centering
+  \subfloat[Original]{{\includegraphics[width=0.9\linewidth]{lunch}}}
+  \quad
+  \subfloat[20\% enlarged (our method)]{{\includegraphics[width=0.9\linewidth]{lunchbigfancy}}}
+  \quad
+  \subfloat[20\% enlarged (seam carving)]{{\includegraphics[width=0.9\linewidth]{lunchbigplain}}}
+  \quad
+  \subfloat[20\% shrunk (our method)]{{\includegraphics[width=0.9\linewidth]{lunchfancy}}}
+  \quad
+  \subfloat[20\% shrunk (seam carving)]{{\includegraphics[width=0.9\linewidth]{lunchplain}}}
+\end{figure}
 
-%-------------------------------------------------------------------------
-\subsection{Margins and page numbering}
-
-All printed material, including text, illustrations, and charts, must be kept
-within a print area 6-7/8 inches (17.5 cm) wide by 8-7/8 inches (22.54 cm)
-high.
-Page numbers should be in footer with page numbers, centered and .75
-inches from the bottom of the page and make it start at the correct page
-number rather than the 4321 in the example.  To do this fine the line (around
-line 23)
-\begin{verbatim}
-%\ifcvprfinal\pagestyle{empty}\fi
-\setcounter{page}{4321}
-\end{verbatim}
-where the number 4321 is your assigned starting page.
-
-Make sure the first page is numbered by commenting out the first page being
-empty on line 46
-\begin{verbatim}
-%\thispagestyle{empty}
-\end{verbatim}
-
-
-%-------------------------------------------------------------------------
-\subsection{Type-style and fonts}
-
-Wherever Times is specified, Times Roman may also be used. If neither is
-available on your word processor, please use the font closest in
-appearance to Times to which you have access.
-
-MAIN TITLE. Center the title 1-3/8 inches (3.49 cm) from the top edge of
-the first page. The title should be in Times 14-point, boldface type.
-Capitalize the first letter of nouns, pronouns, verbs, adjectives, and
-adverbs; do not capitalize articles, coordinate conjunctions, or
-prepositions (unless the title begins with such a word). Leave two blank
-lines after the title.
-
-AUTHOR NAME(s) and AFFILIATION(s) are to be centered beneath the title
-and printed in Times 12-point, non-boldface type. This information is to
-be followed by two blank lines.
-
-The ABSTRACT and MAIN TEXT are to be in a two-column format.
-
-MAIN TEXT. Type main text in 10-point Times, single-spaced. Do NOT use
-double-spacing. All paragraphs should be indented 1 pica (approx. 1/6
-inch or 0.422 cm). Make sure your text is fully justified---that is,
-flush left and flush right. Please do not place any additional blank
-lines between paragraphs.
-
-Figure and table captions should be 9-point Roman type as in
-Figures~\ref{fig:onecol} and~\ref{fig:short}.  Short captions should be centred.
-
-\noindent Callouts should be 9-point Helvetica, non-boldface type.
-Initially capitalize only the first word of section titles and first-,
-second-, and third-order headings.
-
-FIRST-ORDER HEADINGS. (For example, {\large \bf 1. Introduction})
-should be Times 12-point boldface, initially capitalized, flush left,
-with one blank line before, and one blank line after.
-
-SECOND-ORDER HEADINGS. (For example, { \bf 1.1. Database elements})
-should be Times 11-point boldface, initially capitalized, flush left,
-with one blank line before, and one after. If you require a third-order
-heading (we discourage it), use 10-point Times, boldface, initially
-capitalized, flush left, preceded by one blank line, followed by a period
-and your text on the same line.
-
-%-------------------------------------------------------------------------
-\subsection{Footnotes}
-
-Please use footnotes\footnote {This is what a footnote looks like.  It
-often distracts the reader from the main flow of the argument.} sparingly.
-Indeed, try to avoid footnotes altogether and include necessary peripheral
-observations in
-the text (within parentheses, if you prefer, as in this sentence).  If you
-wish to use a footnote, place it at the bottom of the column on the page on
-which it is referenced. Use Times 8-point type, single-spaced.
-
-
-%-------------------------------------------------------------------------
-\subsection{References}
-
-List and number all bibliographical references in 9-point Times,
-single-spaced, at the end of your paper. When referenced in the text,
-enclose the citation number in square brackets, for
-example~\cite{Authors14}.  Where appropriate, include the name(s) of
-editors of referenced books.
-
-\begin{table}
-\begin{center}
-\begin{tabular}{|l|c|}
-\hline
-Method & Frobnability \\
-\hline\hline
-Theirs & Frumpy \\
-Yours & Frobbly \\
-Ours & Makes one's heart Frob\\
-\hline
-\end{tabular}
-\end{center}
-\caption{Results.   Ours is better.}
-\end{table}
-
-%-------------------------------------------------------------------------
-\subsection{Illustrations, graphs, and photographs}
-
-All graphics should be centered.  Please ensure that any point you wish to
-make is resolvable in a printed copy of the paper.  Resize fonts in figures
-to match the font in the body text, and choose line widths which render
-effectively in print.  Many readers (and reviewers), even of an electronic
-copy, will choose to print your paper in order to read it.  You cannot
-insist that they do otherwise, and therefore must not assume that they can
-zoom in to see tiny details on a graphic.
-
-
-%-------------------------------------------------------------------------
-\subsection{Color}
-
-Please refer to the author guidelines on the CVPR 2018 web page for a discussion
-of the use of color in your document.
-
-%------------------------------------------------------------------------
-\section{Final copy}
-
-You must include your signed IEEE copyright release form when you submit
-your finished paper. We MUST have this form before your paper can be
-published in the proceedings.
-
-Please direct any questions to the production editor in charge of these
-proceedings at the IEEE Computer Society Press: Phone (714) 821-8380, or
-Fax (714) 761-1784.
+\begin{figure}
+  \centering
+  \subfloat[Original]{{\includegraphics[width=0.75\linewidth]{people-laughing}}}
+  \quad
+  \subfloat[20\% enlarged (our method)]{{\includegraphics[width=0.75\linewidth]{grown20p20}}}
+  \quad
+  \subfloat[20\% enlarged (seam carving)]{{\includegraphics[width=0.75\linewidth]{grown20pplain}}}
+  \quad
+  \subfloat[20\% shrunk (our method)]{{\includegraphics[width=0.75\linewidth]{smallfancylaughbest}}}
+  \quad
+  \subfloat[20\% shrunk (seam carving)]{{\includegraphics[width=0.75\linewidth]{shrunkplain}}}
+\end{figure}
 
 {\small
 \bibliographystyle{ieee}
