@@ -93,8 +93,7 @@ function energy(img)
     return maskedregions .* magnitude
 end
 
-# maskgen = imageMasks.MaskGenerator()
-# function stub
+maskgen = imageMasks.MaskGenerator()
 function masks(img)
     pyimg = channelview(img)
     pyimg = permutedims(pyimg,[2,3,1])
@@ -107,7 +106,7 @@ function masks(img)
     for i ∈ 1:size(intmasks,3)
         allmasks .+= intmasks[:,:,i]
     end
-    return (allmasks .* 20) .+ 1
+    return ((allmasks) .* 20) .+ 1
 end
 
 function score(energy)
