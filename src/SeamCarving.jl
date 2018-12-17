@@ -1,4 +1,8 @@
 using Images, LinearAlgebra, FileIO, Statistics, PyCall
+ENV["PYTHON"] = "pythonw"
+pushfirst!(PyVector(pyimport("sys")["path"]), "")
+@pyimport imageMasks
+@pyimport numpy as np
 
 function resize(img, newSize::NTuple{2,Int})
     carved = img
@@ -74,9 +78,22 @@ function energy(img)
     return maskedregions .* magnitude
 end
 
+maskgen = imageMasks.MaskGenerator()
 # function stub
 function masks(img)
-    return ones(size(img)...)
+    pyimg = channelview(img)
+    pyimg = channelview(img)
+    pyimg = permutedims(pyimg,[2,3,1])
+    pyimg = round.(Int, 255 .* np.array(pyimg))
+    immasks = mg[:computeMasks](pyimg)
+    intmasks = mapslices(immasks, dims=[3]) do mask
+        map(mp -> mp ? 1 : 0, mask)
+    end
+    allmasks = zeros(size(intmasks[:,:,1]))
+    for i ∈ 1:size(intmasks,3)
+        allmasks .+= intmasks[:,:,i]
+    end
+    return (allmasks .+ 1) .* 2
 end
 
 function score(energy)
