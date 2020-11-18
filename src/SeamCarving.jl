@@ -110,8 +110,8 @@ function masks(img)
 end
 
 function score(energy)
-    M = fill(Inf, size(energy)) #M is our scoring matrix
-    M[1,:] .= energy[1,:] #Scoring matrix is seeded with the first row of the energy matrix
+    M = fill(Inf, size(energy)) # M is our scoring matrix
+    M[1,:] .= energy[1,:] # Scoring matrix is seeded with the first row of the energy matrix
     xrange = -1:1
     height, width = size(M)
     for y = 2:height, x = 2:(width - 1)
@@ -129,7 +129,10 @@ function generateSeam(score)
         row = score[i,:]
         _, seam[i] = findmin(row[Int.(seam[i + 1] .+ offsets)])
 
-        #shift by 2 + 1 so that the min array is a [-1,0,1] offset from the seam coord below it and padding is accounted for
+        #=
+        shift by 2 + 1 so that the min array is a [-1,0,1] offset
+        from the seam coord below it and padding is accounted for
+        =#
         seam[i] += seam[i + 1] - 2
     end
     return seam .- 1 #account for the padding
