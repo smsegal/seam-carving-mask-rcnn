@@ -1,3 +1,7 @@
 * Seam Carving
 
-This was a final project in my Msc. I reimplemented the classic seam-carving algorithm from [[Shai Avidan, Ariel Shamir][https://dl.acm.org/doi/10.1145/1275808.1276390]] in JuliaLang, and implemented an addition to the energy function that incorporated the semantic weights from MaskRCNN to better avoid people, faces, and other semantically meaningfull objects that the pretrained MaskRCNN can detect.
+This was a final project in my Msc.
+
+I re-implemented the classic seam-carving algorithm from [[https://dl.acm.org/doi/10.1145/1275808.1276390][Shai Avidan, Ariel Shamir]] in JuliaLang, and implemented an addition to the energy function that incorporated the semantic weights from MaskRCNN to better avoid people, faces, and other semantically meaningful objects that the pretrained MaskRCNN can detect.
+
+It works reasonably well, albeit slowly. This can be refactored into a much more performant system by actually hooking in to the MaskRCNN API better, but this was also my first real Julia project so I was largely unfamiliar with the Python interoperability. 
